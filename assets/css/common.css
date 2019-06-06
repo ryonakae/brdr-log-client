@@ -1,0 +1,82 @@
+@import 'ress';
+@import '~/assets/css/font-face.css';
+@import '~/assets/css/custom-properties.css';
+@import '~/assets/css/custom-media.css';
+
+html {
+  /*
+    Fluid Typography
+    font-size: calc(
+      [minimum size] +
+      ([maximum size] - [minimum size]) *
+      (
+        (100vw - [minimum viewport width]) /
+        ([maximum viewport width] - [minimum viewport width])
+      )
+    );
+  */
+
+  font-size: calc(10px + (16 - 10) * ((100vw - 375px) / (960 - 375)));
+  background-color: var(--color-bg);
+
+  @media (--pc) {
+    font-size: 16px;
+  }
+
+  @media (--sp-small) {
+    font-size: 10px;
+  }
+}
+
+body {
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  font-weight: 400;
+  line-height: var(--lineHeight);
+  color: var(--color-text);
+  overflow-wrap: break-word;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+
+  & ::-moz-selection {
+    color: var(--color-bg);
+    background-color: var(--color-link);
+  }
+
+  & ::selection {
+    color: var(--color-bg);
+    background-color: var(--color-link);
+  }
+
+  @media (--retina) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--fontSize-title);
+  line-height: var(--lineHeight-title);
+}
+
+:any-link,
+.common-link {
+  display: inline-block;
+  color: var(--color-link);
+  text-decoration: none;
+
+  /* prettier-ignore */
+  @media (hover) { /* stylelint-disable-line csstools/media-use-custom-media */
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

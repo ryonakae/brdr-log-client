@@ -1,0 +1,28 @@
+:root {
+  /* color */
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-link: #00f;
+  --color-caption: #a9a9a9;
+  --color-imageBg: #f5f5f5;
+
+  /* typography */
+  --fontFamily:
+    'Neue Frutiger',
+    YakuHanJPs,
+    YakuHanJP,
+    'Noto Sans JP',
+    sans-serif;
+  --fontSize: 1.5rem;
+  --fontSize-title: 2rem;
+  --fontSize-small: 1.2rem;
+  --lineHeight: 1.9;
+  --lineHeight-title: 1.6;
+
+  /* margin */
+  --margin-site: 0.9375rem; /* 15px */
+  --margin-paragraph: 3.125rem; /* 50px */
+
+  /* other */
+  --radius-image: 0.1rem;
+}
