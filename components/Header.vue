@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <h1 class="title">{{ siteTitle }}</h1>
+    <h1 class="title">
+      <n-link to="/">{{ siteTitle }}</n-link>
+    </h1>
   </header>
 </template>
 

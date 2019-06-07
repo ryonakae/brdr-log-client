@@ -1,16 +1,19 @@
 import NuxtConfiguration from '@nuxt/config'
 import { AxiosRequestConfig } from 'axios'
 import { MetaInfo } from 'vue-meta'
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { Context } from '@nuxt/vue-app'
 
 declare module 'config' {
-  interface MyAxiosRequestConfig extends AxiosRequestConfig {
+  interface NuxtAxiosRequestConfig extends AxiosRequestConfig {
     retry?: {
       retries: number
     }
+    init?(axios: NuxtAxiosInstance, ctx: Context): void
   }
 
   interface MyNuxtConfiguration extends NuxtConfiguration {
-    axios?: MyAxiosRequestConfig
+    axios?: NuxtAxiosRequestConfig
   }
 
   interface Head extends MetaInfo {

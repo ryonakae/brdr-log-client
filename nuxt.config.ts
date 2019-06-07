@@ -5,8 +5,6 @@ import * as Config from 'config'
 // Using .env file in nuxt.config.js
 dotenv.config()
 
-console.log(urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2'))
-
 const nuxtConfig: Config.MyNuxtConfiguration = {
   axios: {
     baseURL: urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2'),

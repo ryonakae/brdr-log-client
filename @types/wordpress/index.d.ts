@@ -1,4 +1,21 @@
 declare module 'wordpress' {
+  type PostStatus = 'publish' | 'future' | 'draft' | 'pending' | 'private'
+  type PostFormat =
+    | 'standard'
+    | 'aside'
+    | 'chat'
+    | 'gallery'
+    | 'link'
+    | 'image'
+    | 'quote'
+    | 'status'
+    | 'video'
+    | 'audio'
+
+  interface RenderedText {
+    rendered: string
+  }
+
   interface Category {
     term_id: number
     name: string
@@ -33,13 +50,9 @@ declare module 'wordpress' {
     slug: string
     type: string
     link: string
-    title: {
-      rendered: string
-    }
+    title: RenderedText
     author: number
-    caption: {
-      rendered: string
-    }
+    caption: RenderedText
     alt_text: string
     media_type: 'image' | 'file'
     mime_type: string
@@ -73,33 +86,17 @@ declare module 'wordpress' {
     date: string
     modified: string
     slug: string
-    status: 'publish' | 'future' | 'draft' | 'pending' | 'private'
+    status: PostStatus
     type: string
     link: string
-    title: {
-      rendered: string
-    }
-    content: {
-      rendered: string
-    }
-    excerpt: {
-      rendered: string
-    }
+    title: RenderedText
+    content: RenderedText
+    excerpt: RenderedText
     author: number
     featured_media: number
     sticky: boolean
     template: string
-    format:
-      | 'standard'
-      | 'aside'
-      | 'chat'
-      | 'gallery'
-      | 'link'
-      | 'image'
-      | 'quote'
-      | 'status'
-      | 'video'
-      | 'audio'
+    format: PostFormat
     categories: number[]
     _categories: Category[]
     _excerpt: string
