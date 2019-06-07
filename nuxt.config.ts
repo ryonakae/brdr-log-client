@@ -1,11 +1,11 @@
 import path from 'path'
 import dotenv from 'dotenv'
-import * as config from 'config'
+import * as Config from 'config'
 
 // Using .env file in nuxt.config.js
 dotenv.config()
 
-const nuxtConfig: config.MyNuxtConfiguration = {
+const nuxtConfig: Config.MyNuxtConfiguration = {
   axios: {
     // baseURL: path.join(process.env.WP_SITE_URL as string, '/wp-json/wp/v2'),
     retry: { retries: 3 }

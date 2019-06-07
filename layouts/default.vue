@@ -14,7 +14,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 
-import * as config from 'config'
+import * as Config from 'config'
 
 @Component({
   components: {
@@ -23,7 +23,7 @@ import * as config from 'config'
   }
 })
 export default class extends Vue {
-  head(): config.Head {
+  head(): Config.Head {
     return {
       htmlAttrs: {
         lang: 'ja'
