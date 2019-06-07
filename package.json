@@ -11,11 +11,13 @@
     "ress": "^1.2.2",
     "sanitize-html": "^1.20.1",
     "ts-node": "^8.2.0",
+    "url-join": "^4.0.0",
     "vuex-module-decorators": "^0.9.9"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
     "@types/sanitize-html": "^1.20.0",
+    "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",
@@ -30,7 +32,6 @@
     "eslint-plugin-vue": "^5.2.2",
     "husky": "^2.4.0",
     "lint-staged": "^8.2.0",
-    "path": "^0.12.7",
     "prettier": "^1.18.0",
     "stylelint": "^10.0.1",
     "stylelint-config-recess-order": "^2.0.2",

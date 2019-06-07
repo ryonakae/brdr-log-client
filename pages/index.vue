@@ -10,14 +10,11 @@ import * as WordPress from 'wordpress'
 @Component
 export default class extends Vue {
   async asyncData(ctx: Context) {
-    const res = await ctx.app.$axios.get(
-      process.env.WP_SITE_URL + '/wp-json/wp/v2/posts',
-      {
-        params: {
-          _embed: ''
-        }
+    const res = await ctx.app.$axios.get('/posts', {
+      params: {
+        _embed: ''
       }
-    )
+    })
     const posts = res.data as WordPress.Post[]
     console.log(posts)
   }
