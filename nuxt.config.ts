@@ -63,26 +63,68 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
   generate: {
     fallback: true,
     routes: async (): Promise<NuxtConfigurationGenerateRoute[]> => {
-      const endPoint = urljoin(
-        process.env.WP_SITE_URL as string,
-        '/wp-json/wp/v2/posts'
-      )
-      const res = await axios.get(endPoint, {
-        params: {
-          _embed: ''
-        }
-      })
-      return res.data.map(
-        (post: WordPress.Post): NuxtConfigurationGenerateRoute => {
-          return {
-            route: `/post/${post.id}`,
-            payload: post
+      // get index routes
+      async function getIndexRoute(): Promise<
+        NuxtConfigurationGenerateRoute[]
+      > {
+        const posts = await axios.get(
+          urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2/posts'),
+          {
+            params: {
+              _embed: ''
+            }
           }
-        }
-      )
+        )
+        const postsData = posts.data as WordPress.Post[]
+        return postsData.map(
+          (post): NuxtConfigurationGenerateRoute => {
+            return {
+              route: `/post/${post.id}`,
+              payload: post
+            }
+          }
+        )
+      }
+
+      // get category page routes
+      async function getCategoryRoute(): Promise<
+        NuxtConfigurationGenerateRoute[]
+      > {
+        // すべてのカテゴリーを取得
+        const categories = await axios.get(
+          urljoin(
+            process.env.WP_SITE_URL as string,
+            '/wp-json/wp/v2/categories'
+          )
+        )
+        const categoriesData = categories.data as WordPress.Category[]
+
+        // countが0以上のカテゴリーだけを返す
+        const filteredCategories = categoriesData.filter(
+          (category): boolean => {
+            return category.count > 0
+          }
+        )
+
+        return filteredCategories.map(
+          (category): NuxtConfigurationGenerateRoute => {
+            return {
+              route: `/category/${category.slug}`,
+              payload: category
+            }
+          }
+        )
+      }
+
+      const indexRoute = await getIndexRoute()
+      const categoryRoute = await getCategoryRoute()
+
+      // return merged NuxtConfigurationGenerateRoute array
+      return indexRoute.concat(categoryRoute)
     }
   },
   loading: false,
+  mode: 'universal',
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
   plugins: [{ src: '~/plugins/sanitizeHtml', mode: 'all' }]
 }

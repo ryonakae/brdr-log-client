@@ -21,9 +21,18 @@ export default class extends Vue {
 
   // asyncData
   async asyncData(ctx: Context): Promise<void | object> {
+    // カテゴリーslugからidを取得
+    const categories = await ctx.app.$axios.get('/categories')
+    const categoriesData = categories.data as WordPress.Category[]
+    const filteredCategories = categoriesData.filter((category): boolean => {
+      return category.slug === ctx.route.params.categorySlug
+    })
+    const categoryID = filteredCategories[0].id
+
     const posts = await ctx.app.$axios.get('/posts', {
       params: {
-        _embed: ''
+        _embed: '',
+        categories: categoryID
       }
     })
     const postsData = posts.data as WordPress.Post[]
@@ -42,8 +51,8 @@ export default class extends Vue {
   async mounted(): Promise<void> {
     await this.$nextTick()
 
-    console.log('index mounted')
-    console.log(process.env.WP_SITE_URL)
+    console.log('category page mounted')
+    console.log(this.$route.params)
     console.log(this.posts)
   }
 }

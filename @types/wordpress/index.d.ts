@@ -17,6 +17,7 @@ declare module 'wordpress' {
   }
 
   interface Category {
+    id: number
     term_id: number
     name: string
     slug: string
