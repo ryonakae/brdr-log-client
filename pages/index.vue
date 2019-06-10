@@ -27,6 +27,7 @@ export default class extends Vue {
         _embed: ''
       }
     })
+
     return { posts: res.data }
   }
 

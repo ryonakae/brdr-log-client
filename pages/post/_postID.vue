@@ -15,11 +15,16 @@ export default class extends Vue {
   private post!: WordPress.Post
 
   async asyncData(ctx: Context): Promise<void | object> {
+    if (ctx.payload) {
+      return { post: ctx.payload }
+    }
+
     const res = await ctx.app.$axios.get(`/posts/${ctx.params.postID}`, {
       params: {
         _embed: ''
       }
     })
+
     return { post: res.data }
   }
 

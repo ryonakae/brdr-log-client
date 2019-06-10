@@ -1,6 +1,10 @@
 import dotenv from 'dotenv'
 import urljoin from 'url-join'
+import axios from 'axios'
+
 import * as Config from 'config'
+import * as WordPress from 'wordpress'
+import { NuxtConfigurationGenerateRoute } from '@nuxt/config/types/generate'
 
 // Using .env file in nuxt.config.js
 dotenv.config()
@@ -55,6 +59,28 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
     SITE_URL: 'https://log.brdr.jp',
     SITE_DESCRIPTION: 'Logs by Ryo Nakae',
     WP_SITE_URL: process.env.WP_SITE_URL as string
+  },
+  generate: {
+    fallback: true,
+    routes: async (): Promise<NuxtConfigurationGenerateRoute[]> => {
+      const endPoint = urljoin(
+        process.env.WP_SITE_URL as string,
+        '/wp-json/wp/v2/posts'
+      )
+      const res = await axios.get(endPoint, {
+        params: {
+          _embed: ''
+        }
+      })
+      return res.data.map(
+        (post: WordPress.Post): NuxtConfigurationGenerateRoute => {
+          return {
+            route: `/post/${post.id}`,
+            payload: post
+          }
+        }
+      )
+    }
   },
   loading: false,
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
