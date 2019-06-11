@@ -1,7 +1,7 @@
 <template>
   <article>
     <h1>{{ post.title.rendered }}</h1>
-    <div v-html="$sanitizeHtml(post.content.rendered)" />
+    <div v-html="post.content.rendered" />
   </article>
 </template>
 

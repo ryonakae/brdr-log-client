@@ -5,6 +5,7 @@ import axios from 'axios'
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { NuxtConfigurationGenerateRoute } from '@nuxt/config/types/generate'
+import '@nuxtjs/axios'
 
 // Using .env file in nuxt.config.js
 dotenv.config()
@@ -121,8 +122,7 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
   },
   loading: false,
   mode: 'universal',
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
-  plugins: [{ src: '~/plugins/sanitizeHtml', mode: 'all' }]
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv']
 }
 
 export default nuxtConfig

@@ -1,4 +1,4 @@
-@import 'ress';
+@import 'sanitize.css';
 @import '~/assets/css/font-face.css';
 @import '~/assets/css/custom-properties.css';
 @import '~/assets/css/custom-media.css';
@@ -16,15 +16,15 @@ html {
     );
   */
 
-  font-size: calc(10px + (16 - 10) * ((100vw - 375px) / (960 - 375)));
+  font-size: calc(14px + (18 - 14) * ((100vw - 375px) / (960 - 375)));
   background-color: var(--color-bg);
 
   @media (--pc) {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   @media (--sp-small) {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 

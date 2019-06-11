@@ -7,15 +7,10 @@
   --color-imageBg: #f5f5f5;
 
   /* typography */
-  --fontFamily:
-    'Neue Frutiger',
-    YakuHanJPs,
-    YakuHanJP,
-    'Noto Sans JP',
-    sans-serif;
-  --fontSize: 1.5rem;
-  --fontSize-title: 2rem;
-  --fontSize-small: 1.2rem;
+  --fontFamily: system-ui;
+  --fontSize: 1rem;
+  --fontSize-title: 1.6rem;
+  --fontSize-small: 0.8rem;
   --lineHeight: 1.9;
   --lineHeight-title: 1.6;
 

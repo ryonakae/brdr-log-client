@@ -8,15 +8,13 @@
     "dayjs": "^1.8.14",
     "nuxt": "^2.8.1",
     "nuxt-property-decorator": "^2.3.0",
-    "ress": "^1.2.2",
-    "sanitize-html": "^1.20.1",
+    "sanitize.css": "^10.0.0",
     "ts-node": "^8.2.0",
     "url-join": "^4.0.0",
     "vuex-module-decorators": "^0.9.9"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
-    "@types/sanitize-html": "^1.20.0",
     "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^1.10.2",
     "@typescript-eslint/parser": "^1.10.2",

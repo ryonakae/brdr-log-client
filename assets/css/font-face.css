@@ -31,21 +31,3 @@
   font-weight: 700;
   src: url('~assets/fonts/YakuHanJP-Medium.woff2') format('woff2');
 }
-
-@font-face {
-  font-family: 'Noto Sans JP';
-  font-weight: 400;
-  src:
-    local('Noto Sans Japanese Regular'),
-    local('NotoSansJapanese-Regular'),
-    url('~assets/fonts/NotoSansCJKjp-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Noto Sans JP';
-  font-weight: 700;
-  src:
-    local('Noto Sans Japanese Bold'),
-    local('NotoSansJapanese-Bold'),
-    url('~assets/fonts/NotoSansCJKjp-Bold.woff2') format('woff2');
-}

@@ -28,12 +28,12 @@ export default class extends Vue {
     })
     const postsData = posts.data as WordPress.Post[]
 
-    // if (postsData.length === 0) {
-    //   return ctx.error({
-    //     statusCode: 404,
-    //     message: 'Post Not Found'
-    //   })
-    // }
+    if (postsData.length === 0) {
+      return ctx.error({
+        statusCode: 404,
+        message: 'Post Not Found'
+      })
+    }
 
     return { posts: postsData }
   }
