@@ -11,8 +11,7 @@ dotenv.config()
 
 const nuxtConfig: Config.MyNuxtConfiguration = {
   axios: {
-    baseURL: urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2'),
-    retry: { retries: 3 }
+    baseURL: urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2')
   },
   build: {
     // analyze: true,
