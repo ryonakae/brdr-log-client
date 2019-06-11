@@ -115,11 +115,8 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
         )
       }
 
-      const indexRoute = await getIndexRoute()
-      const categoryRoute = await getCategoryRoute()
-
-      // return merged NuxtConfigurationGenerateRoute array
-      return indexRoute.concat(categoryRoute)
+      const routes = await Promise.all([getIndexRoute(), getCategoryRoute()])
+      return [...routes[0], ...routes[1]]
     }
   },
   loading: false,
