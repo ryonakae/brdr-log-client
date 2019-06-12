@@ -7,7 +7,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import Post from '~/components/Post.vue'
-import { Context } from '@nuxt/vue-app'
+
+import * as Config from 'config'
 import * as WordPress from 'wordpress'
 
 @Component({
@@ -20,7 +21,12 @@ export default class extends Vue {
   private posts!: WordPress.Post[]
 
   // asyncData
-  async asyncData(ctx: Context): Promise<void | object> {
+  async asyncData(ctx: Config.MyContext): Promise<void | object> {
+    if (process.static && process.client) {
+      const payload = await ctx.app.$axios.get(ctx.$payloadURL(ctx.route))
+      return { posts: payload.data.posts as WordPress.Post[] }
+    }
+
     const posts = await ctx.app.$axios.get('/posts', {
       params: {
         _embed: ''

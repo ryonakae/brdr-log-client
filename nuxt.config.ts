@@ -38,20 +38,20 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
           './assets/css/custom-media.css'
         ]
       }
-    },
-    terser: {
-      parallel: true,
-      sourceMap: false,
-      terserOptions: {
-        warnings: false,
-        compress: {
-          drop_console: true
-        },
-        output: {
-          comments: /@license/i
-        }
-      }
     }
+    // terser: {
+    //   parallel: true,
+    //   sourceMap: false,
+    //   terserOptions: {
+    //     warnings: false,
+    //     compress: {
+    //       drop_console: true
+    //     },
+    //     output: {
+    //       comments: /@license/i
+    //     }
+    //   }
+    // }
   },
   css: ['~/assets/css/common.css'],
   env: {
@@ -122,7 +122,7 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
   },
   loading: false,
   mode: 'universal',
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv']
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'nuxt-payload-extractor']
 }
 
 export default nuxtConfig
