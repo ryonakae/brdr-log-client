@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Neue Frutiger';
-  font-weight: normal;
+  font-weight: 400;
+  font-display: swap;
   src:
     local('FrutigerNeueLTPro-Book'),
     url('~assets/fonts/NeueFrutiger-Book.woff2') format('woff2');
@@ -8,7 +9,8 @@
 
 @font-face {
   font-family: 'Neue Frutiger';
-  font-weight: bold;
+  font-weight: 700;
+  font-display: swap;
   src:
     local('FrutigerNeueLTPro-Bold'),
     url('~assets/fonts/NeueFrutiger-Bold.woff2') format('woff2');
@@ -17,17 +19,40 @@
 @font-face {
   font-family: YakuHanJPs;
   font-weight: 400;
+  font-display: swap;
   src: url('~assets/fonts/YakuHanJPs-Light.woff2') format('woff2');
 }
 
 @font-face {
   font-family: YakuHanJP;
   font-weight: 400;
+  font-display: swap;
   src: url('~assets/fonts/YakuHanJP-DemiLight.woff2') format('woff2');
 }
 
 @font-face {
   font-family: YakuHanJP;
   font-weight: 700;
+  font-display: swap;
   src: url('~assets/fonts/YakuHanJP-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kinto Sans';
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Kinto Sans Regular'),
+    local('KintoSans-Regular'),
+    url('~assets/fonts/KintoSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kinto Sans';
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Kinto Sans Bold'),
+    local('KintoSans-Bold'),
+    url('~assets/fonts/KintoSans-Bold.woff2') format('woff2');
 }

@@ -29,8 +29,9 @@ export default class extends Vue {
   }
 
   async mounted(): Promise<void> {
+    await this.$nextTick()
+
     console.log('header mounted')
-    console.log(this.categories)
 
     // すべてのカテゴリーを取得
     const categories = await this.$axios.get('/categories')

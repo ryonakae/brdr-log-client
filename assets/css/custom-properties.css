@@ -7,7 +7,13 @@
   --color-imageBg: #f5f5f5;
 
   /* typography */
-  --fontFamily: system-ui;
+  --fontFamily:
+    'Neue Frutiger',
+    YakuHanJPs,
+    YakuHanJP,
+    'Kinto Sans',
+    system-ui,
+    sans-serif;
   --fontSize: 1rem;
   --fontSize-title: 1.6rem;
   --fontSize-small: 0.8rem;
