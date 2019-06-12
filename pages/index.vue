@@ -22,9 +22,10 @@ export default class extends Vue {
 
   // asyncData
   async asyncData(ctx: Config.MyContext): Promise<void | object> {
+    // fetch previously saved static JSON payload
     if (process.static && process.client) {
       const payload = await ctx.app.$axios.get(ctx.$payloadURL(ctx.route))
-      return { posts: payload.data.posts as WordPress.Post[] }
+      return { posts: payload.data.posts }
     }
 
     const posts = await ctx.app.$axios.get('/posts', {
