@@ -4,7 +4,7 @@
       <n-link to="/">{{ siteTitle }}</n-link>
     </h1>
 
-    <nav>
+    <nav v-if="categories.length > 0">
       <ul>
         <li v-for="category in categories" :key="category.id">
           <n-link :to="`/category/${category.slug}`">{{

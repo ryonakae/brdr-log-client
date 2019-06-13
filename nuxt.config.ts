@@ -64,14 +64,15 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
     fallback: true,
     routes: async (): Promise<NuxtConfigurationGenerateRoute[]> => {
       // get index routes
-      async function getIndexRoute(): Promise<
+      async function getPostsRoute(): Promise<
         NuxtConfigurationGenerateRoute[]
       > {
         const posts = await axios.get(
           urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2/posts'),
           {
             params: {
-              _embed: ''
+              _embed: '',
+              per_page: 100
             }
           }
         )
@@ -87,7 +88,7 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
       }
 
       // get category page routes
-      async function getCategoryRoute(): Promise<
+      async function getCategoryIndexRoute(): Promise<
         NuxtConfigurationGenerateRoute[]
       > {
         // すべてのカテゴリーを取得
@@ -116,13 +117,16 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
         )
       }
 
-      const routes = await Promise.all([getIndexRoute(), getCategoryRoute()])
+      const routes = await Promise.all([
+        getPostsRoute(),
+        getCategoryIndexRoute()
+      ])
       return [...routes[0], ...routes[1]]
     }
   },
   loading: false,
   mode: 'universal',
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'nuxt-payload-extractor']
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv']
 }
 
 export default nuxtConfig

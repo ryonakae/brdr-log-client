@@ -15,6 +15,7 @@ import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 
 import * as Config from 'config'
+import * as WordPress from 'wordpress'
 
 @Component({
   components: {

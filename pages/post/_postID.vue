@@ -8,25 +8,24 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import * as Config from 'config'
 import * as WordPress from 'wordpress'
+import { Context } from '@nuxt/vue-app'
 
 @Component
 export default class extends Vue {
+  // data
   private post!: WordPress.Post
 
-  async asyncData(ctx: Config.MyContext): Promise<void | object> {
-    // fetch previously saved static JSON payload
-    if (process.static && process.client) {
-      const payload = await ctx.app.$axios.get(ctx.$payloadURL(ctx.route))
-      return { post: payload.data.post }
-    }
-
-    const post = await ctx.app.$axios.get(`/posts/${ctx.params.postID}`, {
-      params: {
-        _embed: ''
+  // asyncData
+  async asyncData(ctx: Context): Promise<void | object> {
+    const post: WordPress.Post = await ctx.app.$axios.$get(
+      `/posts/${ctx.params.postID}`,
+      {
+        params: {
+          _embed: ''
+        }
       }
-    })
+    )
     // .catch((e): void => {
     //   console.log(e)
     //   ctx.error({
@@ -35,11 +34,10 @@ export default class extends Vue {
     //   })
     // })
 
-    const postData = post.data as WordPress.Post
-
-    return { post: postData }
+    return { post: post }
   }
 
+  // lifecycle
   async mounted(): Promise<void> {
     await this.$nextTick()
 
