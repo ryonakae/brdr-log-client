@@ -103,7 +103,7 @@ declare module 'wordpress' {
     _excerpt: string
     _embedded: {
       author: Author[]
-      'wp:featuredmedia'?: Media
+      'wp:featuredmedia'?: Media[]
       'wp:term': Term[]
     }
   }

@@ -1,12 +1,28 @@
 <template>
   <article>
-    <h1>{{ post.title.rendered }}</h1>
+    <figure v-if="post._embedded['wp:featuredmedia']">
+      <img
+        :src="
+          post._embedded['wp:featuredmedia'][0].media_details.sizes.medium
+            .source_url
+        "
+        :alt="post.title.rendered"
+      />
+    </figure>
+    <h1>
+      <a :href="`/post/${post.id}`">{{ post.title.rendered }}</a>
+    </h1>
+    <div>{{ getDate(post.date) }}</div>
+    <div v-for="category in post._categories" :key="category.term_id">
+      <n-link :to="`/category/${category.slug}`">{{ category.name }}</n-link>
+    </div>
     <div v-html="post.content.rendered" />
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import dayjs from 'dayjs'
 
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
@@ -35,6 +51,11 @@ export default class extends Vue {
     // })
 
     return { post: post }
+  }
+
+  // methods
+  getDate(date: string): string {
+    return dayjs(date).format('YYYY/M/D')
   }
 
   // lifecycle
