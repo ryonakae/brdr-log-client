@@ -69,10 +69,12 @@ export default class extends Vue {
 
 .title {
   margin: 0;
+  font-size: inherit;
 }
 
 .category-toggle {
   margin-left: auto;
+  font-weight: bold;
 }
 
 .category {

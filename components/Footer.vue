@@ -1,7 +1,9 @@
 <template>
   <footer class="footer">
     <p class="description">{{ siteDescription }}</p>
-    <small class="copyright">©Ryo Nakae</small>
+    <a class="copyright" href="https://brdr.jp" target="_blank" rel="noopener"
+      >©Ryo Nakae</a
+    >
   </footer>
 </template>
 
@@ -21,6 +23,7 @@ export default class extends Vue {
   display: flex;
   align-items: baseline;
   font-size: var(--fontSize-small);
+  font-weight: bold;
   color: var(--color-caption);
 }
 
