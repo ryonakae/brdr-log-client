@@ -8,6 +8,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Post from '~/components/Post.vue'
 
+import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
 import { AxiosError } from 'axios'
@@ -18,6 +19,21 @@ import { AxiosError } from 'axios'
   }
 })
 export default class extends Vue {
+  // head
+  head(): Config.Head {
+    return {
+      titleTemplate: undefined,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: process.env.SITE_TITLE,
+          template: '%s'
+        }
+      ]
+    }
+  }
+
   // data
   private posts!: WordPress.Post[]
 

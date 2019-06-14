@@ -24,12 +24,52 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import dayjs from 'dayjs'
 
+import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
 import { AxiosError } from 'axios'
 
 @Component
 export default class extends Vue {
+  // head
+  head(): Config.Head {
+    return {
+      title: this.post.title.rendered,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post._excerpt
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.post.title.rendered
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.post._excerpt
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: process.env.SITE_URL + this.$route.path
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.ogImage
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'article'
+        }
+      ]
+    }
+  }
+
   // data
   private post!: WordPress.Post
 
@@ -51,6 +91,20 @@ export default class extends Vue {
       })
 
     return { post: post }
+  }
+
+  // computed
+  get ogImage(): string {
+    let ogImage: string
+
+    if (this.post._embedded['wp:featuredmedia']) {
+      ogImage = this.post._embedded['wp:featuredmedia'][0].media_details.sizes
+        .medium.source_url
+    } else {
+      ogImage = process.env.SITE_URL + '/ogp.png'
+    }
+
+    return ogImage
   }
 
   // methods

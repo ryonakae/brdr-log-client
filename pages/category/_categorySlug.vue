@@ -8,6 +8,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Post from '~/components/Post.vue'
 
+import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
 import { AxiosError } from 'axios'
@@ -18,8 +19,38 @@ import { AxiosError } from 'axios'
   }
 })
 export default class extends Vue {
+  // head
+  head(): Config.Head {
+    return {
+      title: this.catetgory.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.catetgory.description
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.catetgory.name
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: process.env.SITE_URL + this.$route.path
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.catetgory.description
+        }
+      ]
+    }
+  }
+
   // data
   private posts!: WordPress.Post[]
+  private catetgory!: WordPress.Category
 
   // asyncData
   async asyncData(ctx: Context): Promise<void | object> {
@@ -38,17 +69,18 @@ export default class extends Vue {
       })
     }
 
+    // 現在のrouteと同じカテゴリーを抽出
     const filteredCategories = categories.filter((category): boolean => {
       return category.slug === ctx.route.params.categorySlug
     })
-    const categoryID = filteredCategories[0].id
+    const catetgory = filteredCategories[0]
 
     // カテゴリーidをもとに投稿を取得
     const posts: WordPress.Post[] = await ctx.app.$axios
       .$get('/posts', {
         params: {
           _embed: '',
-          categories: categoryID,
+          categories: catetgory.id,
           per_page: 100
         }
       })
@@ -69,7 +101,10 @@ export default class extends Vue {
         message: 'Post Not Found'
       })
     }
-    return { posts: posts }
+    return {
+      posts: posts,
+      catetgory: catetgory
+    }
   }
 
   // lifecycle
