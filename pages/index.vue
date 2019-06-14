@@ -10,6 +10,7 @@ import Post from '~/components/Post.vue'
 
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
+import { AxiosError } from 'axios'
 
 @Component({
   components: {
@@ -22,13 +23,24 @@ export default class extends Vue {
 
   // asyncData
   async asyncData(ctx: Context): Promise<void | object> {
-    const posts: WordPress.Post[] = await ctx.app.$axios.$get('/posts', {
-      params: {
-        _embed: '',
-        per_page: 100
-      }
-    })
+    const posts: WordPress.Post[] = await ctx.app.$axios
+      .$get('/posts', {
+        params: {
+          _embed: '',
+          per_page: 100
+        }
+      })
+      .catch((err: AxiosError): void => {
+        // axiosのエラーが起きたらエラーページに飛ばす
+        if (err.response) {
+          return ctx.error({
+            statusCode: err.response.status,
+            message: err.response.statusText
+          })
+        }
+      })
 
+    // 投稿が0件ならエラーページに飛ばす
     if (posts.length === 0) {
       return ctx.error({
         statusCode: 404,

@@ -10,6 +10,7 @@ import Post from '~/components/Post.vue'
 
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
+import { AxiosError } from 'axios'
 
 @Component({
   components: {
@@ -26,27 +27,38 @@ export default class extends Vue {
     const categories: WordPress.Category[] = await ctx.app.$axios.$get(
       '/categories'
     )
+
     const filteredCategories = categories.filter((category): boolean => {
       return category.slug === ctx.route.params.categorySlug
     })
     const categoryID = filteredCategories[0].id
 
     // カテゴリーidをもとに投稿を取得
-    const posts: WordPress.Post[] = await ctx.app.$axios.$get('/posts', {
-      params: {
-        _embed: '',
-        categories: categoryID,
-        per_page: 100
-      }
-    })
+    const posts: WordPress.Post[] = await ctx.app.$axios
+      .$get('/posts', {
+        params: {
+          _embed: '',
+          categories: categoryID,
+          per_page: 100
+        }
+      })
+      .catch((err: AxiosError): void => {
+        // axiosのエラーが起きたらエラーページに飛ばす
+        if (err.response) {
+          return ctx.error({
+            statusCode: err.response.status,
+            message: err.response.statusText
+          })
+        }
+      })
 
+    // 投稿が0件ならエラーページに飛ばす
     if (posts.length === 0) {
       return ctx.error({
         statusCode: 404,
         message: 'Post Not Found'
       })
     }
-
     return { posts: posts }
   }
 

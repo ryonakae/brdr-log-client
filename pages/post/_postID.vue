@@ -26,6 +26,7 @@ import dayjs from 'dayjs'
 
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
+import { AxiosError } from 'axios'
 
 @Component
 export default class extends Vue {
@@ -34,21 +35,20 @@ export default class extends Vue {
 
   // asyncData
   async asyncData(ctx: Context): Promise<void | object> {
-    const post: WordPress.Post = await ctx.app.$axios.$get(
-      `/posts/${ctx.params.postID}`,
-      {
+    const post: WordPress.Post = await ctx.app.$axios
+      .$get(`/posts/${ctx.params.postID}`, {
         params: {
           _embed: ''
         }
-      }
-    )
-    // .catch((e): void => {
-    //   console.log(e)
-    //   ctx.error({
-    //     statusCode: 404,
-    //     message: 'Post Not Found'
-    //   })
-    // })
+      })
+      .catch((err: AxiosError): void => {
+        if (err.response) {
+          return ctx.error({
+            statusCode: err.response.status,
+            message: err.response.statusText
+          })
+        }
+      })
 
     return { post: post }
   }
