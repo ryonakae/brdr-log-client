@@ -10,9 +10,7 @@
       />
     </figure>
 
-    <h1 class="title">
-      <a :href="`/post/${post.id}`">{{ post.title.rendered }}</a>
-    </h1>
+    <h1 class="title">{{ post.title.rendered }}</h1>
 
     <Info class="info" :categories="post._categories" :date="post.date" />
 
@@ -136,8 +134,15 @@ export default class extends Vue {
 }
 
 .eyecatch {
-  margin-top: 0;
-  margin-bottom: var(--margin-content);
+  margin: 0 0 var(--margin-content);
+
+  & img {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    background-color: var(--color-imageBg);
+    border-radius: var(--radius-image);
+  }
 }
 
 .title {
@@ -166,124 +171,126 @@ export default class extends Vue {
 </style>
 
 <style>
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 1.8em;
-}
+.content {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    padding-left: 0.8rem;
+    margin-top: 1.8em;
+    border-left: 3px solid var(--color-imageBg);
+  }
 
-p,
-figure,
-ul,
-ol,
-blockquote,
-pre {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-}
+  & p,
+  & figure,
+  & ul,
+  & ol,
+  & blockquote,
+  & pre {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
 
-ul,
-ol {
-  padding-left: 1.25em;
-}
+  & ul,
+  & ol {
+    padding-left: 1.25em;
+  }
 
-figure {
-  margin-right: 0;
-  margin-left: 0;
-  text-align: center;
-}
+  & figure {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+  }
 
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: top;
-  background-color: var(--color-imageBg);
-  border-radius: var(--radius-image);
-}
+  & img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+    background-color: var(--color-imageBg);
+    border-radius: var(--radius-image);
+  }
 
-figcaption {
-  margin-top: 1em;
-  font-size: var(--fontSize-small);
-  color: var(--color-caption);
-}
-
-code {
-  font-family: var(--fontFamily-code);
-  font-size: var(--fontSize-code);
-  background-color: var(--color-imageBg);
-  border-radius: var(--radius-image);
-}
-
-pre {
-  padding: 1em;
-  overflow-x: auto;
-  word-wrap: normal;
-  background-color: var(--color-imageBg);
-  border-radius: var(--radius-image);
+  & figcaption {
+    margin-top: 1em;
+    font-size: var(--fontSize-small);
+    color: var(--color-caption);
+  }
 
   & code {
-    display: block;
-    padding: 0;
-    margin: 0;
-    line-height: var(--lineHeight-code);
-    white-space: pre;
-    background: none;
+    font-family: var(--fontFamily-code);
+    font-size: var(--fontSize-code);
+    background-color: var(--color-imageBg);
+    border-radius: var(--radius-image);
   }
-}
 
-blockquote {
-  padding-left: 1em;
-  margin-right: 0;
-  margin-left: 0;
+  & pre {
+    padding: 1em;
+    overflow-x: auto;
+    word-wrap: normal;
+    background-color: var(--color-imageBg);
+    border-radius: var(--radius-image);
 
-  /* color: var(--color-caption); */
-  font-style: italic;
-  border-left: 2px solid var(--color-imageBg);
-}
-
-hr {
-  width: 5em;
-  height: 2px;
-  margin: 2.5em auto;
-  background-color: var(--color-imageBg);
-  border: none;
-  border-radius: var(--radius-image);
-}
-
-.wp-block-embed {
-  &.is-type-video,
-  &.is-provider-soundcloud {
-    position: relative;
-    height: 0;
-    padding-bottom: 56.25%;
-    overflow: hidden;
-
-    & iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    & code {
+      display: block;
+      padding: 0;
+      margin: 0;
+      line-height: var(--lineHeight-code);
+      white-space: pre;
+      background: none;
     }
   }
 
-  &.is-type-video {
+  & blockquote {
+    padding-left: 0.8rem;
+    margin-right: 0;
+    margin-left: 0;
+    font-style: italic;
+    border-left: 3px dashed var(--color-imageBg);
+  }
+
+  & hr {
+    width: 5rem;
+    height: 3px;
+    margin: 2.5em auto;
     background-color: var(--color-imageBg);
+    border: none;
+    border-radius: var(--radius-image);
   }
 
-  &.wp-embed-aspect-4-3 {
-    padding-bottom: 75%;
-  }
+  & .wp-block-embed {
+    &.is-type-video,
+    &.is-provider-soundcloud {
+      position: relative;
+      height: 0;
+      padding-bottom: 56.25%;
+      overflow: hidden;
 
-  &.wp-embed-aspect-16-9 {
-    padding-bottom: 56.25%;
-  }
+      & iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
 
-  &.wp-embed-aspect-21-9 {
-    padding-bottom: 42.86%;
+    &.is-type-video {
+      background-color: var(--color-imageBg);
+    }
+
+    &.wp-embed-aspect-4-3 {
+      padding-bottom: 75%;
+    }
+
+    &.wp-embed-aspect-16-9 {
+      padding-bottom: 56.25%;
+    }
+
+    &.wp-embed-aspect-21-9 {
+      padding-bottom: 42.86%;
+    }
   }
 }
 </style>

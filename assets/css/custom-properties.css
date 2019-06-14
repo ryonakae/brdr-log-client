@@ -21,7 +21,7 @@
   --fontSize-h3: 1.2rem;
   --fontSize-small: 0.8rem;
   --fontSize-code: 0.9rem;
-  --lineHeight: 1.8;
+  --lineHeight: 1.85;
   --lineHeight-title: 1.5;
   --lineHeight-code: 1.5;
 
@@ -29,7 +29,7 @@
   --max-width-site: 800px;
   --margin-site: 0.9375rem; /* 15px */
   --margin-content: 2.5rem;
-  --margin-post: 2rem;
+  --margin-post: 2.2rem;
 
   /* other */
   --radius-image: 0.1rem;

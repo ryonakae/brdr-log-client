@@ -42,7 +42,8 @@ export default class extends Vue {
 
 .category {
   &::after {
-    content: ', ';
+    margin-right: 0.4em;
+    content: ',';
   }
 
   &:last-child::after {
