@@ -8233,11 +8233,6 @@ stylelint-use-nesting@^1.2.1:
   resolved "https://registry.yarnpkg.com/stylelint-use-nesting/-/stylelint-use-nesting-1.2.1.tgz#6a71baeb36766d3ea66aecd5fbb3ab8942921a25"
   integrity sha512-yHIwJsRUDIsb6SFyjXBzxt0x9Xm8+RlbUmfHPKckZQfRCvYxD47So08j8SSU8rYI5+Ip2kPE3i47E+h/gQZCMQ==
 
-stylelint-value-no-exposed-custom-properties@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/stylelint-value-no-exposed-custom-properties/-/stylelint-value-no-exposed-custom-properties-2.2.0.tgz#e893d8bff68afd33db694ccca83f0195c1e2c35e"
-  integrity sha512-GYKMUAgiqje3ZzdwcufPueDPSAFAumguPFZf4/HAzCp0z0Y26VEsQnfbUtCVlEixITiXtUnw6E+vJzpxdMtAfg==
-
 stylelint-value-no-unknown-custom-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-value-no-unknown-custom-properties/-/stylelint-value-no-unknown-custom-properties-2.0.0.tgz#0c2559061a5bda76939e7fece511c11d7faf62ed"

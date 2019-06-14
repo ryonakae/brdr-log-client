@@ -6,7 +6,6 @@ const css = {
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-recess-order'],
   plugins: [
-    'stylelint-value-no-exposed-custom-properties',
     'stylelint-value-no-unknown-custom-properties',
     'stylelint-media-use-custom-media',
     'stylelint-use-nesting'
@@ -14,10 +13,6 @@ module.exports = {
   rules: {
     'declaration-colon-newline-after': 'always-multi-line',
     'value-list-comma-newline-after': 'always-multi-line',
-    'plugin/value-no-exposed-custom-properties': [
-      false,
-      { importFrom: [css.properties] }
-    ],
     'csstools/value-no-unknown-custom-properties': [
       true,
       { importFrom: [css.properties] }

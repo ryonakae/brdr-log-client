@@ -36,7 +36,6 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-media-use-custom-media": "^1.0.0",
     "stylelint-use-nesting": "^1.2.1",
-    "stylelint-value-no-exposed-custom-properties": "^2.2.0",
     "stylelint-value-no-unknown-custom-properties": "^2.0.0"
   },
   "license": "MIT",
