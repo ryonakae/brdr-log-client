@@ -19,7 +19,6 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import * as WordPress from 'wordpress'
-import { AxiosError } from 'axios'
 
 @Component
 export default class extends Vue {
@@ -35,9 +34,14 @@ export default class extends Vue {
     console.log('header mounted')
 
     // すべてのカテゴリーを取得
-    const categories: WordPress.Category[] = await this.$axios.$get(
-      '/categories'
-    )
+    const categories: WordPress.Category[] = await this.$axios
+      .$get('/categories')
+      .catch((): null => {
+        return null
+      })
+
+    // エラーでカテゴリーを取得できなかったらそこで処理をやめる
+    if (!categories) return
 
     // countが0以上のカテゴリーだけを返す
     const filteredCategories = categories.filter((category): boolean => {

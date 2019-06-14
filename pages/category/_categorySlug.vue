@@ -24,9 +24,19 @@ export default class extends Vue {
   // asyncData
   async asyncData(ctx: Context): Promise<void | object> {
     // カテゴリーslugからidを取得
-    const categories: WordPress.Category[] = await ctx.app.$axios.$get(
-      '/categories'
-    )
+    const categories: WordPress.Category[] = await ctx.app.$axios
+      .$get('/categories')
+      .catch((): null => {
+        return null
+      })
+
+    // エラーでカテゴリーを取得できなかったらエラーページに遷移
+    if (!categories) {
+      return ctx.error({
+        statusCode: 503,
+        message: 'Service Temporarily Unavailable'
+      })
+    }
 
     const filteredCategories = categories.filter((category): boolean => {
       return category.slug === ctx.route.params.categorySlug
