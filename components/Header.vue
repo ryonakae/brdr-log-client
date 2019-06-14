@@ -1,10 +1,12 @@
 <template>
-  <header>
-    <h1>
+  <header class="header">
+    <h1 class="title">
       <n-link to="/">{{ siteTitle }}</n-link>
     </h1>
 
-    <nav v-if="categories.length > 0">
+    <a href="#" class="category-toggle">Category</a>
+
+    <nav v-if="categories.length > 0" class="category">
       <ul>
         <li v-for="category in categories" :key="category.id">
           <n-link :to="`/category/${category.slug}`">{{
@@ -22,17 +24,16 @@ import * as WordPress from 'wordpress'
 
 @Component
 export default class extends Vue {
+  // data
   private categories: WordPress.Category[] = []
 
+  // computed
   get siteTitle(): string {
     return process.env.SITE_TITLE as string
   }
 
-  async mounted(): Promise<void> {
-    await this.$nextTick()
-
-    console.log('header mounted')
-
+  // methods
+  async getCategories(): Promise<void> {
     // すべてのカテゴリーを取得
     const categories: WordPress.Category[] = await this.$axios
       .$get('/categories')
@@ -49,7 +50,33 @@ export default class extends Vue {
     })
 
     this.categories = filteredCategories
-    console.log(this.categories)
+  }
+
+  // lifecycle
+  async mounted(): Promise<void> {
+    await this.$nextTick()
+    this.getCategories()
   }
 }
 </script>
+
+<style scoped>
+.header {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+.title {
+  margin: 0;
+}
+
+.category-toggle {
+  margin-left: auto;
+}
+
+.category {
+  position: absolute;
+  display: none;
+}
+</style>

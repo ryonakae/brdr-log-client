@@ -17,7 +17,7 @@ import * as WordPress from 'wordpress'
 
 @Component
 export default class extends Vue {
-  @Prop(Object) readonly post!: WordPress.Post
+  @Prop({ type: Object, required: true }) readonly post!: WordPress.Post
 
   getDate(date: string): string {
     return dayjs(date).format('YYYY/M/D')

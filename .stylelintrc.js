@@ -15,7 +15,7 @@ module.exports = {
     'declaration-colon-newline-after': 'always-multi-line',
     'value-list-comma-newline-after': 'always-multi-line',
     'plugin/value-no-exposed-custom-properties': [
-      true,
+      false,
       { importFrom: [css.properties] }
     ],
     'csstools/value-no-unknown-custom-properties': [

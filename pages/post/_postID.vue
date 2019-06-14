@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="post">
     <figure v-if="post._embedded['wp:featuredmedia']">
       <img
         :src="
@@ -17,6 +17,7 @@
       <n-link :to="`/category/${category.slug}`">{{ category.name }}</n-link>
     </div>
     <div v-html="post.content.rendered" />
+    <n-link to="/">Back to Index</n-link>
   </article>
 </template>
 
@@ -90,6 +91,8 @@ export default class extends Vue {
         }
       })
 
+    console.log(post)
+
     return { post: post }
   }
 
@@ -111,14 +114,99 @@ export default class extends Vue {
   getDate(date: string): string {
     return dayjs(date).format('YYYY/M/D')
   }
-
-  // lifecycle
-  async mounted(): Promise<void> {
-    await this.$nextTick()
-
-    console.log('post mounted')
-    console.log(this.$route)
-    console.log(this.post)
-  }
 }
 </script>
+
+<style scoped>
+.post {
+  width: 100%;
+  overflow-x: hidden;
+}
+</style>
+
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.8em;
+}
+
+p,
+figure,
+ul,
+ol,
+blockquote,
+pre {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+}
+
+figure {
+  margin-right: 0;
+  margin-left: 0;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+  border-radius: var(--radius-image);
+}
+
+figcaption {
+  margin-top: 1em;
+  font-size: var(--fontSize-small);
+  color: var(--color-caption);
+}
+
+code {
+  font-family: var(--fontFamily-code);
+  font-size: var(--fontSize-code);
+  background-color: var(--color-imageBg);
+  border-radius: var(--radius-image);
+}
+
+pre {
+  padding: 1em;
+  overflow-x: auto;
+  word-wrap: normal;
+  background-color: var(--color-imageBg);
+  background-clip: padding-box;
+  border-radius: var(--radius-image);
+
+  & code {
+    display: block;
+    line-height: var(--lineHeight-code);
+    white-space: pre;
+    background: none;
+  }
+}
+
+blockquote {
+  padding-left: 1em;
+  margin-right: 0;
+  margin-left: 0;
+
+  /* color: var(--color-caption); */
+  font-style: italic;
+  border-left: 2px solid var(--color-imageBg);
+}
+
+hr {
+  width: 5em;
+  height: 2px;
+  margin: 3em auto;
+  background-color: var(--color-imageBg);
+  border: none;
+  border-radius: var(--radius-image);
+}
+</style>

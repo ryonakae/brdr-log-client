@@ -14,15 +14,20 @@
     'Kinto Sans',
     system-ui,
     sans-serif;
+  --fontFamily-code: Menlo, Monaco, 'Courier New', Courier, monospace;
   --fontSize: 1rem;
-  --fontSize-title: 1.6rem;
+  --fontSize-h1: 1.7rem;
+  --fontSize-h2: 1.5rem;
+  --fontSize-h3: 1.3rem;
   --fontSize-small: 0.8rem;
-  --lineHeight: 1.9;
-  --lineHeight-title: 1.6;
+  --fontSize-code: 0.9rem;
+  --lineHeight: 1.8;
+  --lineHeight-title: 1.5;
+  --lineHeight-code: 1.5;
 
-  /* margin */
+  /* size */
+  --max-width-site: 800px;
   --margin-site: 0.9375rem; /* 15px */
-  --margin-paragraph: 3.125rem; /* 50px */
 
   /* other */
   --radius-image: 0.1rem;

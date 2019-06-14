@@ -1,9 +1,7 @@
 <template>
   <div class="app">
     <Header />
-    <main class="page">
-      <nuxt />
-    </main>
+    <nuxt />
     <Footer />
   </div>
 </template>
@@ -15,7 +13,6 @@ import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 
 import * as Config from 'config'
-import * as WordPress from 'wordpress'
 
 @Component({
   components: {
@@ -85,3 +82,17 @@ export default class extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-row-gap: 2rem;
+  width: 100%;
+  max-width: calc(var(--max-width-site) + var(--margin-site) * 2);
+  min-height: 100vh;
+  padding: var(--margin-site);
+  margin-right: auto;
+  margin-left: auto;
+}
+</style>

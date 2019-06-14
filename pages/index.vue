@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <Post v-for="post in posts" :key="post.id" :post="post" />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -60,20 +60,13 @@ export default class extends Vue {
     if (posts.length === 0) {
       return ctx.error({
         statusCode: 404,
-        message: 'Post Not Found'
+        message: 'Not Found'
       })
     }
 
+    console.log(posts)
+
     return { posts: posts }
-  }
-
-  // lifecycle
-  async mounted(): Promise<void> {
-    await this.$nextTick()
-
-    console.log('index mounted')
-    console.log(process.env.WP_SITE_URL)
-    console.log(this.posts)
   }
 }
 </script>

@@ -16,7 +16,7 @@ html {
     );
   */
 
-  font-size: calc(14px + (18 - 14) * ((100vw - 375px) / (960 - 375)));
+  font-size: calc(14px + (18 - 14) * ((100vw - 375px) / (800 - 375)));
   background-color: var(--color-bg);
 
   @media (--pc) {
@@ -61,12 +61,28 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: var(--fontSize-title);
   line-height: var(--lineHeight-title);
 }
 
-:any-link,
-.common-link {
+h1 {
+  font-size: var(--fontSize-h1);
+}
+
+h2 {
+  font-size: var(--fontSize-h2);
+}
+
+h3 {
+  font-size: var(--fontSize-h3);
+}
+
+h4,
+h5,
+h6 {
+  font-size: var(--fontSize);
+}
+
+:any-link {
   display: inline-block;
   color: var(--color-link);
   text-decoration: none;

@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <main>
     <h1>{{ error.statusCode }}</h1>
     <p>{{ error.message }}</p>
-  </div>
+    <n-link to="/">Back to Index</n-link>
+  </main>
 </template>
 
 <script lang="ts">
@@ -11,10 +12,6 @@ import { ErrorParams } from '@nuxt/vue-app'
 
 @Component
 export default class extends Vue {
-  @Prop(Object) readonly error!: ErrorParams
-
-  mounted(): void {
-    console.log('error layout mounted')
-  }
+  @Prop({ type: Object, required: true }) readonly error!: ErrorParams
 }
 </script>

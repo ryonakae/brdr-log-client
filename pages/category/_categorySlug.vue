@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <Post v-for="post in posts" :key="post.id" :post="post" />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -62,6 +62,7 @@ export default class extends Vue {
       })
 
     // エラーでカテゴリーを取得できなかったらエラーページに遷移
+    // 雑に503を返す
     if (!categories) {
       return ctx.error({
         statusCode: 503,
@@ -74,6 +75,7 @@ export default class extends Vue {
       return category.slug === ctx.route.params.categorySlug
     })
     const catetgory = filteredCategories[0]
+    console.log(catetgory)
 
     // カテゴリーidをもとに投稿を取得
     const posts: WordPress.Post[] = await ctx.app.$axios
@@ -98,22 +100,16 @@ export default class extends Vue {
     if (posts.length === 0) {
       return ctx.error({
         statusCode: 404,
-        message: 'Post Not Found'
+        message: 'Not Found'
       })
     }
+
+    console.log(posts)
+
     return {
       posts: posts,
       catetgory: catetgory
     }
-  }
-
-  // lifecycle
-  async mounted(): Promise<void> {
-    await this.$nextTick()
-
-    console.log('category page mounted')
-    console.log(this.$route.params)
-    console.log(this.posts)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>{{ siteDescription }}</p>
+    <p class="description">{{ siteDescription }}</p>
     <small class="copyright">©Ryo Nakae</small>
   </footer>
 </template>
@@ -13,9 +13,22 @@ export default class extends Vue {
   get siteDescription(): string {
     return process.env.SITE_DESCRIPTION as string
   }
-
-  mounted(): void {
-    console.log('footer mounted')
-  }
 }
 </script>
+
+<style scoped>
+.footer {
+  display: flex;
+  align-items: baseline;
+  font-size: var(--fontSize-small);
+  color: var(--color-caption);
+}
+
+.description {
+  margin: 0;
+}
+
+.copyright {
+  margin-left: auto;
+}
+</style>
