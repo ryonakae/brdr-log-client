@@ -87,7 +87,7 @@ export default class extends Vue {
 .app {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-row-gap: 2rem;
+  grid-row-gap: var(--margin-content);
   width: 100%;
   max-width: calc(var(--max-width-site) + var(--margin-site) * 2);
   min-height: 100vh;

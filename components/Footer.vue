@@ -23,7 +23,6 @@ export default class extends Vue {
   display: flex;
   align-items: baseline;
   font-size: var(--fontSize-small);
-  font-weight: bold;
   color: var(--color-caption);
 }
 

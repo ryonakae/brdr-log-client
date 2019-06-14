@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Post v-for="post in posts" :key="post.id" :post="post" />
+    <Post v-for="post in posts" :key="post.id" :post="post" class="post" />
   </main>
 </template>
 
@@ -113,3 +113,18 @@ export default class extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.post {
+  margin-top: var(--margin-post);
+  margin-bottom: var(--margin-post);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+</style>

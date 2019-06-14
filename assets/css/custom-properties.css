@@ -16,9 +16,9 @@
     sans-serif;
   --fontFamily-code: Menlo, Monaco, 'Courier New', Courier, monospace;
   --fontSize: 1rem;
-  --fontSize-h1: 1.7rem;
-  --fontSize-h2: 1.5rem;
-  --fontSize-h3: 1.3rem;
+  --fontSize-h1: 1.6rem;
+  --fontSize-h2: 1.4rem;
+  --fontSize-h3: 1.2rem;
   --fontSize-small: 0.8rem;
   --fontSize-code: 0.9rem;
   --lineHeight: 1.8;
@@ -28,6 +28,8 @@
   /* size */
   --max-width-site: 800px;
   --margin-site: 0.9375rem; /* 15px */
+  --margin-content: 2.5rem;
+  --margin-post: 2rem;
 
   /* other */
   --radius-image: 0.1rem;

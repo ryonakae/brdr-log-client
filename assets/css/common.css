@@ -16,7 +16,7 @@ html {
     );
   */
 
-  font-size: calc(14px + (18 - 14) * ((100vw - 375px) / (800 - 375)));
+  font-size: calc(15px + (18 - 15) * ((100vw - 375px) / (800 - 375)));
   background-color: var(--color-bg);
 
   @media (--pc) {
@@ -24,7 +24,7 @@ html {
   }
 
   @media (--sp-small) {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 

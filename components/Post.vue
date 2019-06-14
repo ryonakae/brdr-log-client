@@ -1,26 +1,34 @@
 <template>
   <article>
-    <h1>
+    <h1 class="title">
       <n-link :to="`/post/${post.id}`">{{ post.title.rendered }}</n-link>
     </h1>
-    <div>{{ getDate(post.date) }}</div>
-    <div v-for="category in post._categories" :key="category.term_id">
-      <n-link :to="`/category/${category.slug}`">{{ category.name }}</n-link>
-    </div>
+    <Info class="info" :categories="post._categories" :date="post.date" />
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import dayjs from 'dayjs'
+import Info from '~/components/Info.vue'
+
 import * as WordPress from 'wordpress'
 
-@Component
+@Component({
+  components: {
+    Info
+  }
+})
 export default class extends Vue {
   @Prop({ type: Object, required: true }) readonly post!: WordPress.Post
-
-  getDate(date: string): string {
-    return dayjs(date).format('YYYY/M/D')
-  }
 }
 </script>
+
+<style scoped>
+.title {
+  margin: 0;
+}
+
+.info {
+  margin-top: 0.5rem;
+}
+</style>

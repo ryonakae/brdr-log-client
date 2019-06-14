@@ -1,6 +1,6 @@
 <template>
   <article class="post">
-    <figure v-if="post._embedded['wp:featuredmedia']">
+    <figure v-if="post._embedded['wp:featuredmedia']" class="eyecatch">
       <img
         :src="
           post._embedded['wp:featuredmedia'][0].media_details.sizes.medium
@@ -9,28 +9,33 @@
         :alt="post.title.rendered"
       />
     </figure>
-    <h1>
+
+    <h1 class="title">
       <a :href="`/post/${post.id}`">{{ post.title.rendered }}</a>
     </h1>
-    <div>{{ getDate(post.date) }}</div>
-    <div v-for="category in post._categories" :key="category.term_id">
-      <n-link :to="`/category/${category.slug}`">{{ category.name }}</n-link>
-    </div>
-    <div v-html="post.content.rendered" />
-    <n-link to="/">Back to Index</n-link>
+
+    <Info class="info" :categories="post._categories" :date="post.date" />
+
+    <div class="content" v-html="post.content.rendered" />
+
+    <n-link class="backtop" to="/">Back to Index</n-link>
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import dayjs from 'dayjs'
+import Info from '~/components/Info.vue'
 
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { Context } from '@nuxt/vue-app'
 import { AxiosError } from 'axios'
 
-@Component
+@Component({
+  components: {
+    Info
+  }
+})
 export default class extends Vue {
   // head
   head(): Config.Head {
@@ -109,11 +114,6 @@ export default class extends Vue {
 
     return ogImage
   }
-
-  // methods
-  getDate(date: string): string {
-    return dayjs(date).format('YYYY/M/D')
-  }
 }
 </script>
 
@@ -121,6 +121,35 @@ export default class extends Vue {
 .post {
   width: 100%;
   overflow-x: hidden;
+}
+
+.eyecatch {
+  margin-top: 0;
+  margin-bottom: var(--margin-content);
+}
+
+.title {
+  margin: 0;
+}
+
+.info {
+  margin-top: 0.5rem;
+}
+
+.content {
+  margin-top: var(--margin-content);
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.backtop {
+  margin-top: var(--margin-content);
 }
 </style>
 
@@ -204,7 +233,7 @@ blockquote {
 hr {
   width: 5em;
   height: 2px;
-  margin: 3em auto;
+  margin: 2.5em auto;
   background-color: var(--color-imageBg);
   border: none;
   border-radius: var(--radius-image);

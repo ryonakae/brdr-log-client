@@ -74,7 +74,6 @@ export default class extends Vue {
 
 .category-toggle {
   margin-left: auto;
-  font-weight: bold;
 }
 
 .category {
