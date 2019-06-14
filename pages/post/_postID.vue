@@ -72,6 +72,18 @@ export default class extends Vue {
           property: 'og:type',
           content: 'article'
         }
+      ],
+      script: [
+        {
+          src: 'https://platform.twitter.com/widgets.js',
+          type: 'text/javascript',
+          body: true
+        },
+        {
+          src: 'https://www.instagram.com/embed.js',
+          type: 'text/javascript',
+          body: true
+        }
       ]
     }
   }
@@ -188,6 +200,7 @@ img {
   max-width: 100%;
   height: auto;
   vertical-align: top;
+  background-color: var(--color-imageBg);
   border-radius: var(--radius-image);
 }
 
@@ -209,11 +222,12 @@ pre {
   overflow-x: auto;
   word-wrap: normal;
   background-color: var(--color-imageBg);
-  background-clip: padding-box;
   border-radius: var(--radius-image);
 
   & code {
     display: block;
+    padding: 0;
+    margin: 0;
     line-height: var(--lineHeight-code);
     white-space: pre;
     background: none;
@@ -237,5 +251,39 @@ hr {
   background-color: var(--color-imageBg);
   border: none;
   border-radius: var(--radius-image);
+}
+
+.wp-block-embed {
+  &.is-type-video,
+  &.is-provider-soundcloud {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+
+    & iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.is-type-video {
+    background-color: var(--color-imageBg);
+  }
+
+  &.wp-embed-aspect-4-3 {
+    padding-bottom: 75%;
+  }
+
+  &.wp-embed-aspect-16-9 {
+    padding-bottom: 56.25%;
+  }
+
+  &.wp-embed-aspect-21-9 {
+    padding-bottom: 42.86%;
+  }
 }
 </style>

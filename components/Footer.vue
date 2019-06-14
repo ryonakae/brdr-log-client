@@ -1,9 +1,7 @@
 <template>
   <footer class="footer">
+    <a href="https://brdr.jp" target="_blank" rel="noopener">©Ryo Nakae</a>
     <p class="description">{{ siteDescription }}</p>
-    <a class="copyright" href="https://brdr.jp" target="_blank" rel="noopener"
-      >©Ryo Nakae</a
-    >
   </footer>
 </template>
 
@@ -27,10 +25,6 @@ export default class extends Vue {
 }
 
 .description {
-  margin: 0;
-}
-
-.copyright {
-  margin-left: auto;
+  margin: 0 0 0 auto;
 }
 </style>
