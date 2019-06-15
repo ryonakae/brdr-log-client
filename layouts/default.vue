@@ -68,11 +68,17 @@ export default class extends Vue {
           content: 'ja_JP'
         },
         {
+          hid: 'twitter:card',
           name: 'twitter:card',
-          content: 'summary_large_image'
+          content: 'summary'
         }
       ],
       link: [
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png'
+        },
         {
           rel: 'icon',
           href: '/favicon.ico'

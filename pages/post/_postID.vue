@@ -69,6 +69,11 @@ export default class extends Vue {
           hid: 'og:type',
           property: 'og:type',
           content: 'article'
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: this.twitterCard
         }
       ],
       script: [
@@ -113,16 +118,24 @@ export default class extends Vue {
 
   // computed
   get ogImage(): string {
-    let ogImage: string
+    let ogImage = process.env.SITE_URL + '/ogp.png'
 
     if (this.post._embedded['wp:featuredmedia']) {
       ogImage = this.post._embedded['wp:featuredmedia'][0].media_details.sizes
         .medium.source_url
-    } else {
-      ogImage = process.env.SITE_URL + '/ogp.png'
     }
 
     return ogImage
+  }
+
+  get twitterCard(): string {
+    let twitterCard = 'summary'
+
+    if (this.post._embedded['wp:featuredmedia']) {
+      twitterCard = 'summary_large_image'
+    }
+
+    return twitterCard
   }
 }
 </script>
