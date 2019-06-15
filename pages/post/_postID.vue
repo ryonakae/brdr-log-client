@@ -3,8 +3,9 @@
     <figure v-if="post._embedded['wp:featuredmedia']" class="eyecatch">
       <img
         :src="
-          post._embedded['wp:featuredmedia'][0].media_details.sizes.medium
-            .source_url
+          post._embedded['wp:featuredmedia'][0].media_details.sizes[
+            'post-large'
+          ].source_url
         "
         :alt="post.title.rendered"
       />
@@ -121,8 +122,9 @@ export default class extends Vue {
     let ogImage = process.env.SITE_URL + '/ogp.png'
 
     if (this.post._embedded['wp:featuredmedia']) {
-      ogImage = this.post._embedded['wp:featuredmedia'][0].media_details.sizes
-        .medium.source_url
+      ogImage = this.post._embedded['wp:featuredmedia'][0].media_details.sizes[
+        'post-large'
+      ].source_url
     }
 
     return ogImage
