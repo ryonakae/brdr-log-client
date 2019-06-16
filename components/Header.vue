@@ -143,18 +143,18 @@ export default class extends Vue {
   right: 0;
   display: none;
   background-color: var(--color-bg);
-  border: 1px solid var(--color-link);
+  border: 3px solid var(--color-link);
 
   &.is-active {
     display: block;
   }
 
   & ul {
-    margin: calc(var(--margin-site) * 0.5) 0;
+    margin: calc(var(--margin-site) * 0.6);
   }
 
   & li {
-    padding: calc(var(--margin-site) * 0.1) var(--margin-site);
+    padding: calc(var(--margin-site) * 0.3) 0;
   }
 }
 </style>

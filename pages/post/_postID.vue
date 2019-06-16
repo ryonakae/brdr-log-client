@@ -173,6 +173,10 @@ export default class extends Vue {
   & > *:last-child {
     margin-bottom: 0;
   }
+
+  & :any-link {
+    display: unset;
+  }
 }
 
 .backtop {
