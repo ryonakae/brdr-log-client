@@ -121,25 +121,17 @@ export default class extends Vue {
 
   // computed
   get ogImage(): string {
-    let ogImage = process.env.SITE_URL + '/ogp.png'
-
-    if (this.post._embedded['wp:featuredmedia']) {
-      ogImage = this.post._embedded['wp:featuredmedia'][0].media_details.sizes[
-        'post-large'
-      ].source_url
-    }
-
-    return ogImage
+    return this.post._embedded['wp:featuredmedia']
+      ? this.post._embedded['wp:featuredmedia'][0].media_details.sizes[
+          'post-large'
+        ].source_url
+      : process.env.SITE_URL + '/ogp.png'
   }
 
   get twitterCard(): string {
-    let twitterCard = 'summary'
-
-    if (this.post._embedded['wp:featuredmedia']) {
-      twitterCard = 'summary_large_image'
-    }
-
-    return twitterCard
+    return this.post._embedded['wp:featuredmedia']
+      ? 'summary_large_image'
+      : 'summary'
   }
 }
 </script>
@@ -172,6 +164,7 @@ export default class extends Vue {
 
 .content {
   margin-top: var(--margin-content);
+  line-height: var(--lineHeight-content);
 
   & > *:first-child {
     margin-top: 0;
@@ -185,7 +178,6 @@ export default class extends Vue {
 .backtop {
   margin-top: var(--margin-content);
   font-size: var(--fontSize-small);
-  font-weight: 700;
 }
 </style>
 
@@ -197,42 +189,9 @@ export default class extends Vue {
   & h4,
   & h5,
   & h6 {
-    position: relative;
-    padding-right: 1.5rem;
+    padding-left: 0.8rem;
     margin-top: 1.9em;
-
-    &::before {
-      position: absolute;
-      top: 0.1rem;
-      right: 0;
-      font-size: 0.7rem;
-      font-weight: normal;
-      color: var(--color-caption);
-    }
-  }
-
-  & h1::before {
-    content: 'H1';
-  }
-
-  & h2::before {
-    content: 'H2';
-  }
-
-  & h3::before {
-    content: 'H3';
-  }
-
-  & h4::before {
-    content: 'H4';
-  }
-
-  & h5::before {
-    content: 'H5';
-  }
-
-  & h6::before {
-    content: 'H6';
+    border-left: 3px dotted var(--color-border);
   }
 
   & p,
@@ -299,7 +258,7 @@ export default class extends Vue {
     margin-right: 0;
     margin-left: 0;
     font-style: italic;
-    border-left: 3px dashed var(--color-border);
+    border-left: 3px solid var(--color-border);
   }
 
   & hr {

@@ -56,15 +56,6 @@ body {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: var(--lineHeight-title);
-}
-
 h1 {
   font-size: var(--fontSize-h1);
 }
@@ -84,6 +75,7 @@ h6 {
 }
 
 :any-link {
+  display: inline-block;
   color: var(--color-link);
   text-decoration: none;
 
@@ -92,7 +84,7 @@ h6 {
     cursor: pointer;
 
     &:hover {
-      color: var(--color-link) !important;
+      color: var(--color-link) !important; /* ignore override on post-title */
       text-decoration: underline;
     }
   }
