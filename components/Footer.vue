@@ -20,11 +20,12 @@ export default class extends Vue {
 .footer {
   display: flex;
   align-items: baseline;
+  margin-top: var(--margin-content);
   font-size: var(--fontSize-small);
-  color: var(--color-caption);
 }
 
 .description {
   margin: 0 0 0 auto;
+  color: var(--color-caption);
 }
 </style>

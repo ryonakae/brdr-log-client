@@ -119,6 +119,7 @@ export default class extends Vue {
   position: relative;
   display: flex;
   align-items: baseline;
+  margin-bottom: var(--margin-content);
 }
 
 .title {
