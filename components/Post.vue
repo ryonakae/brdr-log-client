@@ -27,6 +27,10 @@ export default class extends Vue {
 .title {
   margin: 0;
   font-size: var(--fontSize-h2);
+
+  & :any-link {
+    color: inherit;
+  }
 }
 
 .info {

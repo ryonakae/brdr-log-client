@@ -17,7 +17,9 @@
 
     <div class="content" v-html="post.content.rendered" />
 
-    <n-link class="backtop" to="/">Back to Index</n-link>
+    <div class="backtop">
+      <n-link to="/">Back to Index</n-link>
+    </div>
   </article>
 </template>
 
@@ -155,7 +157,7 @@ export default class extends Vue {
     width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-border);
     border-radius: var(--radius-image);
   }
 }
@@ -182,6 +184,8 @@ export default class extends Vue {
 
 .backtop {
   margin-top: var(--margin-content);
+  font-size: var(--fontSize-small);
+  font-weight: 700;
 }
 </style>
 
@@ -193,9 +197,42 @@ export default class extends Vue {
   & h4,
   & h5,
   & h6 {
-    padding-left: 0.8rem;
-    margin-top: 1.8em;
-    border-left: 3px solid var(--color-imageBg);
+    position: relative;
+    padding-right: 1.5rem;
+    margin-top: 1.9em;
+
+    &::before {
+      position: absolute;
+      top: 0.1rem;
+      right: 0;
+      font-size: 0.7rem;
+      font-weight: normal;
+      color: var(--color-caption);
+    }
+  }
+
+  & h1::before {
+    content: 'H1';
+  }
+
+  & h2::before {
+    content: 'H2';
+  }
+
+  & h3::before {
+    content: 'H3';
+  }
+
+  & h4::before {
+    content: 'H4';
+  }
+
+  & h5::before {
+    content: 'H5';
+  }
+
+  & h6::before {
+    content: 'H6';
   }
 
   & p,
@@ -223,7 +260,7 @@ export default class extends Vue {
     max-width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-border);
     border-radius: var(--radius-image);
   }
 
@@ -236,7 +273,7 @@ export default class extends Vue {
   & code {
     font-family: var(--fontFamily-code);
     font-size: var(--fontSize-code);
-    background-color: var(--color-imageBg);
+    background-color: var(--color-border);
     border-radius: var(--radius-image);
   }
 
@@ -244,7 +281,7 @@ export default class extends Vue {
     padding: 1em;
     overflow-x: auto;
     word-wrap: normal;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-border);
     border-radius: var(--radius-image);
 
     & code {
@@ -262,14 +299,14 @@ export default class extends Vue {
     margin-right: 0;
     margin-left: 0;
     font-style: italic;
-    border-left: 3px dashed var(--color-imageBg);
+    border-left: 3px dashed var(--color-border);
   }
 
   & hr {
     width: 5rem;
     height: 3px;
-    margin: 2.5em auto;
-    background-color: var(--color-imageBg);
+    margin: var(--margin-content) auto;
+    background-color: var(--color-border);
     border: none;
     border-radius: var(--radius-image);
   }
@@ -292,7 +329,7 @@ export default class extends Vue {
     }
 
     &.is-type-video {
-      background-color: var(--color-imageBg);
+      background-color: var(--color-border);
     }
 
     &.wp-embed-aspect-4-3 {

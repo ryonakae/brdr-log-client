@@ -16,15 +16,16 @@ html {
     );
   */
 
-  font-size: calc(15px + (20 - 15) * ((100vw - 375px) / (800 - 375)));
+  font-size: calc(16px + (20 - 16) * ((100vw - 375px) / (800 - 375)));
   background-color: var(--color-bg);
+  -webkit-tap-highlight-color: var(--color-link);
 
   @media (--pc) {
     font-size: 20px;
   }
 
   @media (--sp-small) {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
@@ -83,7 +84,6 @@ h6 {
 }
 
 :any-link {
-  display: inline-block;
   color: var(--color-link);
   text-decoration: none;
 
@@ -92,6 +92,7 @@ h6 {
     cursor: pointer;
 
     &:hover {
+      color: var(--color-link) !important;
       text-decoration: underline;
     }
   }

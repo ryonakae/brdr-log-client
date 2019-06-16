@@ -11,7 +11,8 @@
     </h1>
 
     <a href="#" class="category-toggle" @click="toggleCategory">
-      <span>Category</span>
+      <span v-if="!isCategoryActive">Category</span>
+      <span v-else>Close</span>
     </a>
 
     <nav
@@ -129,6 +130,7 @@ export default class extends Vue {
 
 .category-name {
   font-weight: normal;
+  color: var(--color-caption);
 }
 
 .category-toggle {
@@ -141,18 +143,18 @@ export default class extends Vue {
   right: 0;
   display: none;
   background-color: var(--color-bg);
-  border: 1px solid var(--color-imageBg);
+  border: 1px solid var(--color-link);
 
   &.is-active {
     display: block;
   }
 
   & ul {
-    margin: calc(var(--margin-site) * 0.6) 0;
+    margin: calc(var(--margin-site) * 0.5) 0;
   }
 
   & li {
-    padding: calc(var(--margin-site) * 0.2) var(--margin-site);
+    padding: calc(var(--margin-site) * 0.1) var(--margin-site);
   }
 }
 </style>
