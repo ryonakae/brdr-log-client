@@ -193,9 +193,41 @@ export default class extends Vue {
   & h4,
   & h5,
   & h6 {
-    padding-left: 0.8rem;
+    position: relative;
+    padding-right: 1.5rem;
     margin-top: 1.9em;
-    border-left: 3px dotted var(--color-border);
+
+    &::before {
+      position: absolute;
+      top: 0.1em;
+      right: 0;
+      font-size: 0.7rem;
+      color: var(--color-caption);
+    }
+  }
+
+  & h1::before {
+    content: 'H1';
+  }
+
+  & h2::before {
+    content: 'H2';
+  }
+
+  & h3::before {
+    content: 'H3';
+  }
+
+  & h4::before {
+    content: 'H4';
+  }
+
+  & h5::before {
+    content: 'H5';
+  }
+
+  & h6::before {
+    content: 'H6';
   }
 
   & p,
@@ -262,7 +294,7 @@ export default class extends Vue {
     margin-right: 0;
     margin-left: 0;
     font-style: italic;
-    border-left: 3px solid var(--color-border);
+    border-left: 3px dashed var(--color-border);
   }
 
   & hr {

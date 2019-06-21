@@ -150,11 +150,11 @@ export default class extends Vue {
   }
 
   & ul {
-    margin: calc(var(--margin-site) * 0.6);
+    margin: 0.8rem 0;
   }
 
   & li {
-    padding: calc(var(--margin-site) * 0.3) 0;
+    margin: 0.5rem 1rem;
   }
 }
 </style>

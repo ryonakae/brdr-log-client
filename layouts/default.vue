@@ -93,7 +93,6 @@ export default class extends Vue {
 .app {
   max-width: calc(var(--max-width-site) + var(--margin-site) * 2);
   padding: var(--margin-site);
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 }
 </style>
