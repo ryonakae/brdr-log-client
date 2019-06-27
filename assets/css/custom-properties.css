@@ -1,10 +1,11 @@
 :root {
   /* color */
   --color-bg: #fff;
-  --color-text: #000;
+  --color-text: #0d0d0d;
   --color-link: #ffc700;
-  --color-caption: #bfbdb6;
-  --color-border: #f2f2f0;
+  --color-caption: #b3b3b3;
+  --color-border: #ebebeb;
+  --color-imageBg: #fafafa;
 
   /* typography */
   --fontFamily:

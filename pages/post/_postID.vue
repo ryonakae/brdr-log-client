@@ -149,7 +149,7 @@ export default class extends Vue {
     width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-border);
+    background-color: var(--color-imageBg);
     border-radius: var(--radius-image);
   }
 }
@@ -193,41 +193,7 @@ export default class extends Vue {
   & h4,
   & h5,
   & h6 {
-    position: relative;
-    padding-right: 1.5rem;
-    margin-top: 1.9em;
-
-    &::before {
-      position: absolute;
-      top: 0.1em;
-      right: 0;
-      font-size: 0.7rem;
-      color: var(--color-caption);
-    }
-  }
-
-  & h1::before {
-    content: 'H1';
-  }
-
-  & h2::before {
-    content: 'H2';
-  }
-
-  & h3::before {
-    content: 'H3';
-  }
-
-  & h4::before {
-    content: 'H4';
-  }
-
-  & h5::before {
-    content: 'H5';
-  }
-
-  & h6::before {
-    content: 'H6';
+    margin-top: 2em;
   }
 
   & p,
@@ -255,7 +221,7 @@ export default class extends Vue {
     max-width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-border);
+    background-color: var(--color-imageBg);
     border-radius: var(--radius-image);
   }
 
@@ -268,7 +234,7 @@ export default class extends Vue {
   & code {
     font-family: var(--fontFamily-code);
     font-size: var(--fontSize-code);
-    background-color: var(--color-border);
+    background-color: var(--color-imageBg);
     border-radius: var(--radius-image);
   }
 
@@ -276,7 +242,7 @@ export default class extends Vue {
     padding: 1em;
     overflow-x: auto;
     word-wrap: normal;
-    background-color: var(--color-border);
+    background-color: var(--color-imageBg);
     border-radius: var(--radius-image);
 
     & code {
@@ -324,7 +290,7 @@ export default class extends Vue {
     }
 
     &.is-type-video {
-      background-color: var(--color-border);
+      background-color: var(--color-imageBg);
     }
 
     &.wp-embed-aspect-4-3 {
