@@ -118,18 +118,19 @@ export default class extends Vue {
 <style scoped>
 .header {
   position: relative;
-  display: flex;
-  align-items: baseline;
   margin-bottom: var(--margin-content);
 }
 
 .title {
   margin: 0;
-  font-size: inherit;
+  font-size: var(--fontSize-h1);
+
+  & :any-link {
+    color: inherit;
+  }
 }
 
 .category-name {
-  font-weight: normal;
   color: var(--color-caption);
 }
 
@@ -139,11 +140,10 @@ export default class extends Vue {
 
 .category {
   position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
+  top: calc(100% + 0.2rem);
+  left: 0;
   display: none;
-  background-color: var(--color-bg);
-  border: 3px solid var(--color-link);
+  background-color: var(--color-link);
 
   &.is-active {
     display: block;
@@ -155,6 +155,10 @@ export default class extends Vue {
 
   & li {
     margin: 0.5rem 1rem;
+  }
+
+  & :any-link {
+    color: inherit;
   }
 }
 </style>

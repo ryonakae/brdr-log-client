@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
-    <a href="https://brdr.jp" target="_blank" rel="noopener">©Ryo Nakae</a>
     <p class="description">{{ siteDescription }}</p>
+    <a href="https://brdr.jp" target="_blank" rel="noopener">©Ryo Nakae</a>
   </footer>
 </template>
 
@@ -18,8 +18,6 @@ export default class extends Vue {
 
 <style scoped>
 .footer {
-  display: flex;
-  align-items: baseline;
   margin-top: var(--margin-content);
   font-size: var(--fontSize-small);
 }

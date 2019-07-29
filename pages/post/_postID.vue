@@ -149,7 +149,7 @@ export default class extends Vue {
     width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-bg-element);
     border-radius: var(--radius-image);
   }
 }
@@ -221,7 +221,7 @@ export default class extends Vue {
     max-width: 100%;
     height: auto;
     vertical-align: top;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-bg-element);
     border-radius: var(--radius-image);
   }
 
@@ -234,7 +234,7 @@ export default class extends Vue {
   & code {
     font-family: var(--fontFamily-code);
     font-size: var(--fontSize-code);
-    background-color: var(--color-imageBg);
+    background-color: var(--color-bg-element);
     border-radius: var(--radius-image);
   }
 
@@ -242,7 +242,7 @@ export default class extends Vue {
     padding: 1em;
     overflow-x: auto;
     word-wrap: normal;
-    background-color: var(--color-imageBg);
+    background-color: var(--color-bg-element);
     border-radius: var(--radius-image);
 
     & code {
@@ -290,7 +290,7 @@ export default class extends Vue {
     }
 
     &.is-type-video {
-      background-color: var(--color-imageBg);
+      background-color: var(--color-bg-element);
     }
 
     &.wp-embed-aspect-4-3 {
