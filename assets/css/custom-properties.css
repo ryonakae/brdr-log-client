@@ -2,7 +2,8 @@
   /* color */
   --color-bg: #fff;
   --color-bg-element: #fafafa;
-  --color-text: #000;
+  --color-text: #444;
+  --color-title: #000;
   --color-link: #2af8eb;
   --color-caption: #a9a9a9;
   --color-border: #ebebeb;

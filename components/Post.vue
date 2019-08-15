@@ -26,7 +26,7 @@ export default class extends Vue {
 <style scoped>
 .title {
   margin: 0;
-  font-size: var(--fontSize-h2);
+  font-size: var(--fontSize-h3);
 
   & :any-link {
     color: inherit;

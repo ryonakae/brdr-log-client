@@ -135,7 +135,7 @@ export default class extends Vue {
 }
 
 .category-toggle {
-  margin-left: auto;
+  font-size: var(--fontSize-small);
 }
 
 .category {
