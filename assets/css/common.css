@@ -85,8 +85,9 @@ h6 {
 
 :any-link {
   display: inline-block;
-  color: var(--color-link);
-  text-decoration: none;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-link);
 
   /* prettier-ignore */
   @media (hover) { /* stylelint-disable-line csstools/media-use-custom-media */
@@ -94,7 +95,6 @@ h6 {
 
     &:hover {
       color: var(--color-link) !important; /* ignore override on post-title */
-      text-decoration: underline;
     }
   }
 }
