@@ -56,7 +56,7 @@ export default class extends Vue {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: process.env.SITE_URL + '/ogp.png'
+          content: `${process.env.SITE_URL}/ogp.png`
         },
         {
           hid: 'og:type',
@@ -82,6 +82,12 @@ export default class extends Vue {
         {
           rel: 'icon',
           href: '/favicon.ico'
+        },
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          href: `${process.env.SITE_URL}/feed.xml`,
+          title: process.env.SITE_TITLE
         }
       ]
     }

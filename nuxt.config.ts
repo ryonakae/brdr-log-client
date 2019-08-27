@@ -5,6 +5,7 @@ import axios from 'axios'
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { NuxtConfigurationGenerateRoute } from '@nuxt/config/types/generate'
+import Feed from './modules/feed'
 import '@nuxtjs/axios'
 
 // Using .env file in nuxt.config.js
@@ -63,6 +64,15 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
   generate: {
     fallback: true,
     routes: async (): Promise<NuxtConfigurationGenerateRoute[]> => {
+      // create feed
+      const feed = new Feed({
+        title: 'LOG',
+        id: 'https://log.brdr.jp',
+        link: 'https://log.brdr.jp',
+        description: 'Logs by Ryo Nakae',
+        copyright: '©Ryo Nakae'
+      })
+
       // get index routes
       async function getPostsRoute(): Promise<
         NuxtConfigurationGenerateRoute[]
@@ -79,6 +89,9 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
         const postsData = posts.data as WordPress.Post[]
         return postsData.map(
           (post): NuxtConfigurationGenerateRoute => {
+            // Feedにエントリーを追加
+            feed.addItem(post)
+
             return {
               route: `/post/${post.id}`,
               payload: post
@@ -121,6 +134,10 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
         getPostsRoute(),
         getCategoryIndexRoute()
       ])
+
+      // generate feed
+      await feed.generate('./dist/feed.xml')
+
       return [...routes[0], ...routes[1]]
     }
   },
