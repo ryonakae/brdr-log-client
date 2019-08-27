@@ -9,7 +9,6 @@ export default class Post {
 
   public constructor(options: FeedOptions) {
     this.feed = new Feed(options)
-    console.log('create feed', options)
   }
 
   public addItem(post: WordPress.Post): void {
@@ -28,19 +27,13 @@ export default class Post {
       title: post.title.rendered,
       link: `${this.feed.options.id}/post/${post.id}`,
       date: new Date(post.date),
-      description: post._excerpt,
-      content: post.content.rendered,
-      image: eyecatch,
-      author: [{ name: (post.author as unknown) as string }]
+      content: post._excerpt,
+      image: eyecatch
     })
-
-    console.log('feed addItem')
   }
 
   public async generate(path: string): Promise<void> {
     if (!this.feed) return
-
     await promisify(fs.writeFile)(path, this.feed.rss2())
-    console.log('rss feed generate complete')
   }
 }
