@@ -1,27 +1,19 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    project: './tsconfig.json',
-    ecmaVersion: 2019
-  },
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    '@nuxtjs',
+    '@nuxtjs/eslint-config-typescript',
     'plugin:prettier/recommended',
     'prettier/standard',
-    'prettier/@typescript-eslint',
-    'prettier/vue'
+    'prettier/vue',
+    'prettier/@typescript-eslint'
   ],
   rules: {
-    camelcase: 'warn',
+    camelcase: 'off',
     'no-console': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/camelcase': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    'unicorn/number-literal-case': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/no-v-html': 'warn',
     'vue/html-self-closing': [

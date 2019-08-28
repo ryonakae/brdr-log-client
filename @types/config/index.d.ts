@@ -1,22 +1,31 @@
-import NuxtConfiguration from '@nuxt/config'
+import { Configuration } from '@nuxt/types'
 import { AxiosRequestConfig } from 'axios'
 import { MetaInfo } from 'vue-meta'
+import {
+  MetaPropertyCharset,
+  MetaPropertyEquiv,
+  MetaPropertyName,
+  MetaPropertyMicrodata,
+  MetaPropertyProperty
+} from 'vue-meta/types/vue-meta'
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
+
+interface HeadWeaken extends MetaInfo {
+  meta?: any
+}
 
 declare module 'config' {
-  interface MyNuxtConfiguration extends NuxtConfiguration {
+  interface MyNuxtConfiguration extends Configuration {
     axios?: AxiosRequestConfig
   }
 
-  interface Head extends MetaInfo {
-    meta?: {
-      hid?: string
-      charset?: string
-      content?: string
-      'http-equiv'?: 'content-security-policy' | 'refresh'
-      name?: string
-      property?: string
-      [key: string]: any
-      template?: string | ((chunk: string) => string)
-    }[]
+  interface Head extends HeadWeaken {
+    meta?: (
+      | MetaPropertyCharset
+      | MetaPropertyEquiv
+      | MetaPropertyName
+      | MetaPropertyMicrodata
+      | MetaPropertyProperty
+      | { hid?: string })[]
   }
 }

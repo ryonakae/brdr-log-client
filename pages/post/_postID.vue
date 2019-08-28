@@ -25,12 +25,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Info from '~/components/Info.vue'
-
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
-import { Context } from '@nuxt/vue-app'
+import { Context } from '@nuxt/types'
 import { AxiosError } from 'axios'
+import Info from '~/components/Info.vue'
 
 @Component({
   components: {
@@ -116,7 +115,7 @@ export default class extends Vue {
 
     console.log(post)
 
-    return { post: post }
+    return { post }
   }
 
   // computed
@@ -209,6 +208,10 @@ export default class extends Vue {
   & ul,
   & ol {
     padding-left: 1.25em;
+
+    & ul {
+      margin: 0;
+    }
   }
 
   & figure {

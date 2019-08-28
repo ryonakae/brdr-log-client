@@ -8,10 +8,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { ErrorParams } from '@nuxt/vue-app'
+import { NuxtError } from '@nuxt/types/app'
 
 @Component
 export default class extends Vue {
-  @Prop({ type: Object, required: true }) readonly error!: ErrorParams
+  @Prop({ type: Object, required: true }) readonly error!: NuxtError
 }
 </script>

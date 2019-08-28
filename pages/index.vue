@@ -6,12 +6,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Post from '~/components/Post.vue'
-
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
-import { Context } from '@nuxt/vue-app'
+import { Context } from '@nuxt/types'
 import { AxiosError } from 'axios'
+import Post from '~/components/Post.vue'
 
 @Component({
   components: {
@@ -66,7 +65,7 @@ export default class extends Vue {
 
     console.log(posts)
 
-    return { posts: posts }
+    return { posts }
   }
 }
 </script>

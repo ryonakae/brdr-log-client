@@ -1,10 +1,9 @@
 import dotenv from 'dotenv'
 import urljoin from 'url-join'
 import axios from 'axios'
-
 import * as Config from 'config'
 import * as WordPress from 'wordpress'
-import { NuxtConfigurationGenerateRoute } from '@nuxt/config/types/generate'
+import { NuxtConfigurationGenerateRoute } from '@nuxt/types/config/generate'
 import Feed from './modules/feed'
 import '@nuxtjs/axios'
 
@@ -54,6 +53,7 @@ const nuxtConfig: Config.MyNuxtConfiguration = {
       }
     }
   },
+  buildModules: ['@nuxt/typescript-build'],
   css: ['~/assets/css/common.css'],
   env: {
     SITE_TITLE: 'LOG',

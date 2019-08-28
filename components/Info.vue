@@ -16,7 +16,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import dayjs from 'dayjs'
-
 import * as WordPress from 'wordpress'
 
 @Component
@@ -37,7 +36,6 @@ export default class extends Vue {
 .info {
   display: flex;
   font-size: var(--fontSize-small);
-  color: var(--color-caption);
 }
 
 .category {
@@ -54,5 +52,6 @@ export default class extends Vue {
 
 .date {
   margin-left: 0.8em;
+  color: var(--color-caption);
 }
 </style>

@@ -9,9 +9,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import Info from '~/components/Info.vue'
-
 import * as WordPress from 'wordpress'
+import Info from '~/components/Info.vue'
 
 @Component({
   components: {
