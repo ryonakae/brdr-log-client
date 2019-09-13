@@ -12,6 +12,7 @@ import { NuxtError } from '@nuxt/types/app'
 
 @Component
 export default class extends Vue {
-  @Prop({ type: Object, required: true }) readonly error!: NuxtError
+  @Prop({ type: Object, required: true })
+  readonly error!: NuxtError
 }
 </script>
