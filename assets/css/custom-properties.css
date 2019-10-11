@@ -33,6 +33,13 @@
   --margin-content: 2.5rem;
   --margin-post: 2.2rem;
 
-  /* other */
-  --radius-image: 0.1rem;
+  /* dark mode */
+  /* stylelint-disable-next-line csstools/media-use-custom-media */
+  @media (prefers-color-scheme: dark) {
+    --color-bg: #1a1a1a;
+    --color-text: #fff;
+    --color-title: #fff;
+    --color-caption: #707070;
+    --color-border: #383838;
+  }
 }

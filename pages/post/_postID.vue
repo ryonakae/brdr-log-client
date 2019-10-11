@@ -149,7 +149,6 @@ export default class extends Vue {
     height: auto;
     vertical-align: top;
     background-color: var(--color-bg-element);
-    border-radius: var(--radius-image);
   }
 }
 
@@ -225,7 +224,6 @@ export default class extends Vue {
     height: auto;
     vertical-align: top;
     background-color: var(--color-bg-element);
-    border-radius: var(--radius-image);
   }
 
   & figcaption {
@@ -238,7 +236,6 @@ export default class extends Vue {
     font-family: var(--fontFamily-code);
     font-size: var(--fontSize-code);
     background-color: var(--color-bg-element);
-    border-radius: var(--radius-image);
   }
 
   & pre {
@@ -246,7 +243,6 @@ export default class extends Vue {
     overflow-x: auto;
     word-wrap: normal;
     background-color: var(--color-bg-element);
-    border-radius: var(--radius-image);
 
     & code {
       display: block;
@@ -272,7 +268,6 @@ export default class extends Vue {
     margin: var(--margin-content) auto;
     background-color: var(--color-border);
     border: none;
-    border-radius: var(--radius-image);
   }
 
   & .wp-block-embed {

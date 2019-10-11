@@ -89,8 +89,8 @@ h6 {
   text-decoration-line: underline;
   text-decoration-color: var(--color-link);
 
-  /* prettier-ignore */
-  @media (hover) { /* stylelint-disable-line csstools/media-use-custom-media */
+  /* stylelint-disable-next-line csstools/media-use-custom-media */
+  @media (hover) {
     cursor: pointer;
 
     &:hover {
