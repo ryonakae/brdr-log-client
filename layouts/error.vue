@@ -1,7 +1,6 @@
 <template>
   <main>
     <h1>{{ error.statusCode }}</h1>
-    <p>{{ error.message }}</p>
     <n-link to="/">Back to Index</n-link>
   </main>
 </template>
