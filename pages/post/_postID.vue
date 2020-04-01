@@ -2,11 +2,7 @@
   <article class="post">
     <figure v-if="post._embedded['wp:featuredmedia']" class="eyecatch">
       <img
-        :src="
-          post._embedded['wp:featuredmedia'][0].media_details.sizes[
-            'post-large'
-          ].source_url
-        "
+        :src="post._embedded['wp:featuredmedia'][0].source_url"
         :alt="post.title.rendered"
       />
     </figure>
@@ -121,9 +117,7 @@ export default class extends Vue {
   // computed
   get ogImage(): string {
     return this.post._embedded['wp:featuredmedia']
-      ? this.post._embedded['wp:featuredmedia'][0].media_details.sizes[
-          'post-large'
-        ].source_url
+      ? this.post._embedded['wp:featuredmedia'][0].source_url
       : process.env.SITE_URL + '/ogp.png'
   }
 

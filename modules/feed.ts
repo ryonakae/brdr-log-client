@@ -16,9 +16,7 @@ export default class Post {
 
     let eyecatch: string | undefined
     if (post._embedded['wp:featuredmedia']) {
-      eyecatch =
-        post._embedded['wp:featuredmedia'][0].media_details.sizes['post-large']
-          .source_url
+      eyecatch = post._embedded['wp:featuredmedia'][0].source_url
     } else {
       eyecatch = undefined
     }
