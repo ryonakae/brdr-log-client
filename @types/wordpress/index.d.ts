@@ -37,14 +37,6 @@ declare module 'wordpress' {
     taxonomy: string
   }
 
-  interface MediaSize {
-    file: string
-    width: number
-    heigt: number
-    mime_type: string
-    source_url: string
-  }
-
   interface Media {
     id: number
     date: string
@@ -61,11 +53,11 @@ declare module 'wordpress' {
       width: number
       height: number
       file: string
-      sizes: {
-        medium: MediaSize
-        theme_eyecatch: MediaSize
-        full: MediaSize
-      }
+      // sizes: {
+      //   image_meta: {
+      //     ...
+      //   }
+      // }
     }
     source_url: string
   }
