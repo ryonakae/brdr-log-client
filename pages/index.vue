@@ -56,7 +56,7 @@ export default class extends Vue {
       })
 
     // 投稿が0件ならエラーページに飛ばす
-    if (posts.length === 0) {
+    if (!posts || posts.length === 0) {
       return ctx.error({
         statusCode: 404,
         message: 'Not Found'
