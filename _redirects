@@ -1,2 +1,2 @@
 # Redirect default Netlify subdomain to primary domain
-https://lucid-mahavira-f508f2.netlify.com/* https://log.brdr.jp/:splat 301!
+https://lucid-mahavira-f508f2.netlify.app/* https://log.brdr.jp/:splat 301!
