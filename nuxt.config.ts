@@ -1,16 +1,16 @@
 import dotenv from 'dotenv'
 import urljoin from 'url-join'
 import axios from 'axios'
-import * as Config from 'config'
 import * as WordPress from 'wordpress'
 import { NuxtConfigurationGenerateRoute } from '@nuxt/types/config/generate'
+import { Configuration } from '@nuxt/types'
 import Feed from './modules/feed'
 import '@nuxtjs/axios'
 
 // Using .env file in nuxt.config.js
 dotenv.config()
 
-const nuxtConfig: Config.MyNuxtConfiguration = {
+const nuxtConfig: Configuration = {
   axios: {
     baseURL: urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2')
   },

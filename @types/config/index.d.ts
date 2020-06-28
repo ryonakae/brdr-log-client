@@ -8,17 +8,12 @@ import {
   MetaPropertyMicrodata,
   MetaPropertyProperty
 } from 'vue-meta/types/vue-meta'
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
 
 interface HeadWeaken extends MetaInfo {
   meta?: any
 }
 
 declare module 'config' {
-  interface MyNuxtConfiguration extends Configuration {
-    axios?: AxiosRequestConfig
-  }
-
   interface Head extends HeadWeaken {
     meta?: (
       | MetaPropertyCharset
@@ -26,6 +21,7 @@ declare module 'config' {
       | MetaPropertyName
       | MetaPropertyMicrodata
       | MetaPropertyProperty
-      | { hid?: string })[]
+      | { hid?: string }
+    )[]
   }
 }
