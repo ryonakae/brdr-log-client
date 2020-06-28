@@ -143,7 +143,8 @@ const nuxtConfig: Configuration = {
   },
   loading: false,
   mode: 'universal',
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv']
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
+  target: 'static'
 }
 
 export default nuxtConfig

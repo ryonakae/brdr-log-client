@@ -49,9 +49,8 @@
     ]
   },
   "scripts": {
-    "build": "nuxt-ts build",
+    "build": "nuxt-ts build && nuxt-ts export",
     "dev": "nuxt-ts",
-    "generate": "nuxt-ts generate",
     "precommit": "lint-staged",
     "start": "nuxt-ts start"
   }
