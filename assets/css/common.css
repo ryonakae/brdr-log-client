@@ -1,5 +1,7 @@
 @import 'sanitize.css';
-@import '~/assets/css/font-face.css';
+@import '~/assets/css/font-face-common.css';
+@import '~/assets/css/font-face-kinto-regular.css';
+@import '~/assets/css/font-face-kinto-bold.css';
 @import '~/assets/css/custom-properties.css';
 @import '~/assets/css/custom-media.css';
 
