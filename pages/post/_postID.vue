@@ -132,11 +132,10 @@ export default class extends Vue {
 <style scoped>
 .post {
   width: 100%;
-  overflow-x: hidden;
 }
 
 .eyecatch {
-  margin: 0 0 var(--margin-content);
+  margin: 0 calc(var(--margin-site) * -1) var(--margin-content);
 
   & img {
     width: 100%;
@@ -208,8 +207,8 @@ export default class extends Vue {
   }
 
   & figure {
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: calc(var(--margin-site) * -1);
+    margin-left: calc(var(--margin-site) * -1);
     text-align: center;
   }
 

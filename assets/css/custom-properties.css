@@ -29,9 +29,13 @@
 
   /* size */
   --max-width-site: 800px;
-  --margin-site: 0.625rem;
+  --margin-site: 1.875rem;
   --margin-content: 2.5rem;
   --margin-post: 2.2rem;
+
+  @media (--sp) {
+    --margin-site: 0.625rem;
+  }
 
   /* dark mode */
   /* stylelint-disable-next-line csstools/media-use-custom-media */
