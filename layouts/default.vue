@@ -69,6 +69,11 @@ export default class extends Vue {
           hid: 'twitter:card',
           name: 'twitter:card',
           content: 'summary'
+        },
+        {
+          hid: 'color-scheme',
+          name: 'color-scheme',
+          content: 'light dark'
         }
       ],
       link: [
@@ -79,7 +84,7 @@ export default class extends Vue {
         },
         {
           rel: 'icon',
-          href: '/favicon.ico'
+          href: ''
         },
         {
           rel: 'alternate',
