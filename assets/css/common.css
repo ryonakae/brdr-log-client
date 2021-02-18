@@ -44,12 +44,12 @@ body {
 
   & ::-moz-selection {
     color: var(--color-bg);
-    background-color: var(--color-link);
+    background-color: var(--color-accent);
   }
 
   & ::selection {
     color: var(--color-bg);
-    background-color: var(--color-link);
+    background-color: var(--color-accent);
   }
 
   @media (--retina) {
@@ -89,14 +89,14 @@ h6 {
   display: inline-block;
   color: inherit;
   text-decoration-line: underline;
-  text-decoration-color: var(--color-link);
+  text-decoration-color: var(--color-accent);
 
   /* stylelint-disable-next-line csstools/media-use-custom-media */
   @media (hover) {
     cursor: pointer;
 
     &:hover {
-      color: var(--color-link) !important; /* ignore override on post-title */
+      color: var(--color-accent) !important; /* ignore override on post-title */
     }
   }
 }

@@ -144,6 +144,7 @@ const nuxtConfig: Configuration = {
   loading: false,
   mode: 'universal',
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
+  plugins: [{ src: '~/plugins/router', mode: 'client' }],
   target: 'static'
 }
 

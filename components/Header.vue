@@ -143,7 +143,7 @@ export default class extends Vue {
   top: calc(100% + 0.2rem);
   left: 0;
   display: none;
-  background-color: var(--color-link);
+  background-color: var(--color-accent);
 
   &.is-active {
     display: block;
