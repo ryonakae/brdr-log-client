@@ -43,12 +43,12 @@ body {
   -moz-osx-font-smoothing: unset;
 
   & ::-moz-selection {
-    color: var(--color-bg);
+    color: var(--color-bg-light);
     background-color: var(--color-accent);
   }
 
   & ::selection {
-    color: var(--color-bg);
+    color: var(--color-bg-light);
     background-color: var(--color-accent);
   }
 
@@ -96,7 +96,6 @@ h6 {
     cursor: pointer;
 
     &:hover {
-      color: var(--color-accent) !important; /* ignore override on post-title */
       text-decoration-style: wavy;
     }
   }

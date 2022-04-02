@@ -1,13 +1,26 @@
 :root {
   /* color */
-  --color-bg: #fff;
-  --color-bg-element: #fafafa;
-  --color-text: #1a1a1a;
-  --color-text-dark: #1a1a1a;
-  --color-title: #000;
+  --color-bg-light: #fff;
+  --color-bg-element-light: #fafafa;
+  --color-text-light: #2e2e2e;
+  --color-title-light: #1a1a1a;
+  --color-caption-light: #a9a9a9;
+  --color-border-light: #ebebeb;
+
+  --color-bg-dark: #1a1a1a;
+  --color-bg-element-dark: #242424;
+  --color-text-dark: #e6e6e6;
+  --color-title-dark: #fff;
+  --color-caption-dark: #707070;
+  --color-border-dark: #383838;
+
   --color-accent: transparent;
-  --color-caption: #a9a9a9;
-  --color-border: #ebebeb;
+  --color-bg: var(--color-bg-light);
+  --color-bg-element: var(--color-bg-element-light);
+  --color-text: var(--color-text-light);
+  --color-title: var(--color-title-light);
+  --color-caption: var(--color-caption-light);
+  --color-border: var(--color-border-light);
 
   /* typography */
   --fontFamily:
@@ -41,11 +54,11 @@
   /* dark mode */
   /* stylelint-disable-next-line csstools/media-use-custom-media */
   @media (prefers-color-scheme: dark) {
-    --color-bg: #1a1a1a;
-    --color-bg-element: #242424;
-    --color-text: #fff;
-    --color-title: #fff;
-    --color-caption: #707070;
-    --color-border: #383838;
+    --color-bg: var(--color-bg-dark);
+    --color-bg-element: var(--color-bg-element-dark);
+    --color-text: var(--color-text-dark);
+    --color-title: var(--color-title-dark);
+    --color-caption: var(--color-caption-dark);
+    --color-border: var(--color-border-dark);
   }
 }

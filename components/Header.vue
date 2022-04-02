@@ -147,7 +147,6 @@ export default class extends Vue {
   right: 0;
   display: none;
   background-color: var(--color-accent);
-  color: var(--color-text-dark);
 
   &.is-active {
     display: block;
@@ -162,7 +161,15 @@ export default class extends Vue {
   }
 
   & :any-link {
-    color: inherit;
+    text-decoration-line: none;
+    text-decoration-color: var(--color-text);
+
+    /* stylelint-disable-next-line csstools/media-use-custom-media */
+    @media (hover) {
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
   }
 }
 </style>
