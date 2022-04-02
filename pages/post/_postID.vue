@@ -118,8 +118,8 @@ export default class extends Vue {
 
   // computed
   get ogImage(): string {
-    return this.post._embedded['wp:featuredmedia']
-      ? this.post._embedded['wp:featuredmedia'][0].source_url
+    return this.post._thumbnail
+      ? this.post._thumbnail.url
       : process.env.SITE_URL + '/ogp.png'
   }
 
