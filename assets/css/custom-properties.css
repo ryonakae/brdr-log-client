@@ -3,6 +3,7 @@
   --color-bg: #fff;
   --color-bg-element: #fafafa;
   --color-text: #1a1a1a;
+  --color-text-dark: #1a1a1a;
   --color-title: #000;
   --color-accent: transparent;
   --color-caption: #a9a9a9;
@@ -34,7 +35,7 @@
   --margin-post: 2.2rem;
 
   @media (--sp) {
-    --margin-site: 0.625rem;
+    --margin-site: 1.5rem;
   }
 
   /* dark mode */

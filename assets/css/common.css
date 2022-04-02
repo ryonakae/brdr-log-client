@@ -97,6 +97,7 @@ h6 {
 
     &:hover {
       color: var(--color-accent) !important; /* ignore override on post-title */
+      text-decoration-style: wavy;
     }
   }
 }

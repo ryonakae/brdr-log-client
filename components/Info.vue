@@ -36,6 +36,7 @@ export default class extends Vue {
 .info {
   display: flex;
   font-size: var(--fontSize-small);
+  color: var(--color-caption);
 }
 
 .category {
@@ -52,6 +53,5 @@ export default class extends Vue {
 
 .date {
   margin-left: 0.8em;
-  color: var(--color-caption);
 }
 </style>

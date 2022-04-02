@@ -119,6 +119,9 @@ export default class extends Vue {
 .header {
   position: relative;
   margin-bottom: var(--margin-content);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -141,20 +144,21 @@ export default class extends Vue {
 .category {
   position: absolute;
   top: calc(100% + 0.2rem);
-  left: 0;
+  right: 0;
   display: none;
   background-color: var(--color-accent);
+  color: var(--color-text-dark);
 
   &.is-active {
     display: block;
   }
 
   & ul {
-    margin: 0.8rem 0;
+    margin: 0.5rem 0;
   }
 
   & li {
-    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   & :any-link {

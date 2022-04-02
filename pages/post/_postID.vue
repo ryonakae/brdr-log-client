@@ -209,8 +209,8 @@ export default class extends Vue {
   }
 
   & figure {
-    margin-right: calc(var(--margin-site) * -1);
-    margin-left: calc(var(--margin-site) * -1);
+    margin-right: 0;
+    margin-left: 0;
     text-align: center;
   }
 
