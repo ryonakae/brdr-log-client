@@ -98,5 +98,10 @@ declare module 'wordpress' {
       'wp:featuredmedia'?: Media[]
       'wp:term': Term[]
     }
+    _thumbnail: {
+      url: string
+      width: number
+      height: number
+    } | null
   }
 }

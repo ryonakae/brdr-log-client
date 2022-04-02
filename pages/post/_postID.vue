@@ -1,9 +1,11 @@
 <template>
   <article class="post">
-    <figure v-if="post._embedded['wp:featuredmedia']" class="eyecatch">
+    <figure v-if="post._thumbnail" class="eyecatch">
       <img
-        :src="post._embedded['wp:featuredmedia'][0].source_url"
+        :src="post._thumbnail.url"
         :alt="post.title.rendered"
+        :width="post._thumbnail.width"
+        :height="post._thumbnail.height"
       />
     </figure>
 
