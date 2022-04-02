@@ -43,9 +43,9 @@
 
   /* size */
   --max-width-site: 800px;
-  --margin-site: 1.875rem;
-  --margin-content: 2.5rem;
-  --margin-post: 2.2rem;
+  --margin-site: 2rem;
+  --margin-content: 3rem;
+  --margin-post: 2.5rem;
 
   @media (--sp) {
     --margin-site: 1.5rem;

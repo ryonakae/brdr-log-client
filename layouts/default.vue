@@ -101,7 +101,7 @@ export default class extends Vue {
 <style scoped>
 .app {
   max-width: calc(var(--max-width-site) + var(--margin-site) * 2);
-  padding: var(--margin-content) var(--margin-site) var(--margin-site);
+  padding: var(--margin-content) var(--margin-site);
   margin: 0 auto;
 }
 </style>
