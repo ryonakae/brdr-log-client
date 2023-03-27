@@ -36,9 +36,11 @@
   --fontSize-h2: 1.3rem;
   --fontSize-h3: 1.1rem;
   --fontSize-small: 0.8rem;
+  --fontSize-extra-small: 0.625rem;
   --fontSize-code: 0.9rem;
   --lineHeight: 1.5;
   --lineHeight-content: 1.85;
+  --lineHeight-heading: 1.35;
   --lineHeight-code: 1.5;
 
   /* size */

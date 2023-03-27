@@ -186,7 +186,52 @@ export default class extends Vue {
   & h4,
   & h5,
   & h6 {
-    margin-top: 2em;
+    margin-top: 2.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    line-height: var(--lineHeight-heading);
+
+    &::before {
+      font-size: var(--fontSize-extra-small);
+      font-weight: 400;
+      color: var(--color-caption);
+    }
+  }
+
+  & h1 {
+    &::before {
+      content: 'H1';
+    }
+    border-bottom: 3px dashed var(--color-border);
+    padding-bottom: 0.25em;
+  }
+  & h2 {
+    &::before {
+      content: 'H2';
+    }
+    border-bottom: 2px dashed var(--color-border);
+    padding-bottom: 0.25em;
+  }
+  & h3 {
+    &::before {
+      content: 'H3';
+    }
+  }
+  & h4 {
+    &::before {
+      content: 'H4';
+    }
+  }
+  & h5 {
+    &::before {
+      content: 'H5';
+    }
+  }
+  & h6 {
+    &::before {
+      content: 'H6';
+    }
   }
 
   & p,
@@ -259,10 +304,9 @@ export default class extends Vue {
 
   & hr {
     width: 5rem;
-    height: 3px;
     margin: var(--margin-content) auto;
-    background-color: var(--color-border);
     border: none;
+    border-top: 3px dashed var(--color-border);
   }
 
   & .wp-block-embed {

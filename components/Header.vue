@@ -161,8 +161,10 @@ export default class extends Vue {
   }
 
   & :any-link {
+    color: white;
     text-decoration-line: none;
-    text-decoration-color: var(--color-text);
+    text-decoration-color: white;
+    mix-blend-mode: exclusion;
 
     /* stylelint-disable-next-line csstools/media-use-custom-media */
     @media (hover) {
