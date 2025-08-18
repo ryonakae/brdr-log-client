@@ -4,9 +4,11 @@ export function useCustomFetch<T>(
   url: string | (() => string),
   options?: UseFetchOptions<T>,
 ) {
+  const config = useRuntimeConfig()
+
   return useFetch(url, {
     ...options,
-    baseURL: process.env.WP_SITE_URL + '/wp-json/wp/v2',
+    baseURL: config.wpSiteUrl + '/wp-json/wp/v2',
     $fetch: useNuxtApp().$api as typeof $fetch,
   })
 }

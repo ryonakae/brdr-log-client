@@ -14,6 +14,11 @@ export default defineNuxtConfig({
     '~/assets/styles/custom-properties.css',
     '~/assets/styles/main.css',
   ],
+  runtimeConfig: {
+    public: {
+      wpSiteUrl: process.env.WP_SITE_URL,
+    },
+  },
   compatibilityDate: '2025-08-18',
   nitro: {
     minify: isProduction,

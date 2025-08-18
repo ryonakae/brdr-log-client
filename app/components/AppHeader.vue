@@ -44,7 +44,6 @@ import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router'
 const route = useRoute()
 
 // state
-// const currentCategories = ref<WordPress.Category[]>([])
 const currentCategory = ref<WordPress.Category | null>(null)
 const currentCategoryName = ref('')
 const isCategoryActive = ref(false)
@@ -65,10 +64,6 @@ const { data: currentCategories } = await useAsyncData(
     })
 
     return filteredCategories
-  },
-  {
-    server: true,
-    default: () => [],
   },
 )
 
