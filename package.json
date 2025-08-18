@@ -1,57 +1,37 @@
 {
-  "name": "brdr-log-client",
-  "version": "0.0.1",
-  "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.10",
-    "@nuxtjs/axios": "^5.11.0",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "dayjs": "^1.8.28",
-    "feed": "^4.2.0",
-    "nuxt": "^2.13.2",
-    "nuxt-property-decorator": "^2.7.2",
-    "sanitize.css": "^11.0.1",
-    "url-join": "^4.0.1",
-    "vuex-module-decorators": "^0.17.0"
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "prepare": "husky",
+    "preview": "nuxt preview"
   },
-  "devDependencies": {
-    "@nuxt/typescript-build": "^1.0.3",
-    "@nuxtjs/eslint-config-typescript": "^2.0.0",
-    "@types/fs-extra": "^9.0.1",
-    "@types/url-join": "^4.0.0",
-    "eslint": "^7.3.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "stylelint": "^13.6.1",
-    "stylelint-config-recess-order": "^2.0.4",
-    "stylelint-config-standard": "^20.0.0",
-    "stylelint-media-use-custom-media": "^2.0.0",
-    "stylelint-use-nesting": "^3.0.0",
-    "stylelint-value-no-unknown-custom-properties": "^3.0.0"
-  },
-  "license": "MIT",
   "lint-staged": {
-    "**/*.{js,ts}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "**/*.vue": [
-      "eslint --fix",
-      "stylelint --fix",
-      "git add"
-    ],
-    "**/*.css": [
-      "prettier --write",
-      "stylelint --fix",
-      "git add"
+    "*.{ts,vue,json}": [
+      "eslint . --fix"
     ]
   },
-  "scripts": {
-    "build": "nuxt-ts build && nuxt-ts export",
-    "dev": "nuxt-ts",
-    "precommit": "lint-staged",
-    "start": "nuxt-ts start"
+  "dependencies": {
+    "@pinia/nuxt": "0.11.2",
+    "dayjs": "1.11.13",
+    "nuxt": "4.0.3",
+    "pinia": "3.0.3",
+    "sanitize.css": "13.0.0",
+    "vue": "3.5.18",
+    "vue-router": "4.5.1"
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "3.0.0",
+    "@nuxt/eslint": "1.8.0",
+    "eslint": "9.33.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.5",
+    "postcss-preset-env": "10.2.4",
+    "typescript": "5.9.2",
+    "vue-tsc": "3.0.5"
   }
 }

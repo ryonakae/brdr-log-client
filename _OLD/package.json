@@ -1,0 +1,41 @@
+{
+  "name": "brdr-log-client",
+  "version": "0.0.1",
+  "dependencies": {
+    "@nuxt/typescript-runtime": "^0.4.10",
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "dayjs": "^1.8.28",
+    "feed": "^4.2.0",
+    "nuxt": "^2.13.2",
+    "nuxt-property-decorator": "^2.7.2",
+    "sanitize.css": "^11.0.1",
+    "url-join": "^4.0.1",
+    "vuex-module-decorators": "^0.17.0"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^1.0.3",
+    "@nuxtjs/eslint-config-typescript": "^2.0.0",
+    "@types/fs-extra": "^9.0.1",
+    "@types/url-join": "^4.0.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.6.1",
+    "stylelint-config-recess-order": "^2.0.4",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-media-use-custom-media": "^2.0.0",
+    "stylelint-use-nesting": "^3.0.0",
+    "stylelint-value-no-unknown-custom-properties": "^3.0.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt-ts build && nuxt-ts export",
+    "dev": "nuxt-ts",
+    "precommit": "lint-staged",
+    "start": "nuxt-ts start"
+  }
+}

@@ -1,0 +1,66 @@
+:root {
+  /* color */
+  --color-bg-light: #fff;
+  --color-bg-element-light: #fafafa;
+  --color-text-light: #2e2e2e;
+  --color-title-light: #1a1a1a;
+  --color-caption-light: #a9a9a9;
+  --color-border-light: #ebebeb;
+
+  --color-bg-dark: #1a1a1a;
+  --color-bg-element-dark: #242424;
+  --color-text-dark: #e6e6e6;
+  --color-title-dark: #fff;
+  --color-caption-dark: #707070;
+  --color-border-dark: #383838;
+
+  --color-accent: transparent;
+  --color-bg: var(--color-bg-light);
+  --color-bg-element: var(--color-bg-element-light);
+  --color-text: var(--color-text-light);
+  --color-title: var(--color-title-light);
+  --color-caption: var(--color-caption-light);
+  --color-border: var(--color-border-light);
+
+  /* typography */
+  --fontFamily:
+    'Neue Frutiger',
+    YakuHanJPs,
+    YakuHanJP,
+    'Kinto Sans',
+    system-ui,
+    sans-serif;
+  --fontFamily-code: Menlo, Monaco, 'Courier New', Courier, monospace;
+  --fontSize: 1rem;
+  --fontSize-h1: 1.5rem;
+  --fontSize-h2: 1.3rem;
+  --fontSize-h3: 1.1rem;
+  --fontSize-small: 0.8rem;
+  --fontSize-extra-small: 0.625rem;
+  --fontSize-code: 0.9rem;
+  --lineHeight: 1.5;
+  --lineHeight-content: 1.85;
+  --lineHeight-heading: 1.35;
+  --lineHeight-code: 1.5;
+
+  /* size */
+  --max-width-site: 800px;
+  --margin-site: 2rem;
+  --margin-content: 3rem;
+  --margin-post: 2.5rem;
+
+  @media (--sp) {
+    --margin-site: 1.5rem;
+  }
+
+  /* dark mode */
+  /* stylelint-disable-next-line csstools/media-use-custom-media */
+  @media (prefers-color-scheme: dark) {
+    --color-bg: var(--color-bg-dark);
+    --color-bg-element: var(--color-bg-element-dark);
+    --color-text: var(--color-text-dark);
+    --color-title: var(--color-title-dark);
+    --color-caption: var(--color-caption-dark);
+    --color-border: var(--color-border-dark);
+  }
+}

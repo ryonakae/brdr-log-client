@@ -1,0 +1,4 @@
+@custom-media --retina (resolution >= 1.5dppx);
+@custom-media --pc (width >= 960px);
+@custom-media --sp (width < 960px);
+@custom-media --sp-small (width < 375px);
