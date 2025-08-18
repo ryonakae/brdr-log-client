@@ -15,7 +15,7 @@
       @click="toggleCategory"
     >
       <span v-if="!isCategoryActive">Category</span>
-      <span v-else>Close</span>
+      <span v-else>[X] Category</span>
     </a>
 
     <nav
@@ -45,11 +45,7 @@ const { data: allCategories } = await useAsyncData(
   'all-categories',
   async () => {
     // すべてのカテゴリーを取得
-    const res = await useCustomFetch<WordPress.Category[]>('/categories')
-    const categories = res.data.value
-
-    // エラーでカテゴリーを取得できなかったらそこで処理をやめる
-    if (!categories) return
+    const categories = await useCustomFetch<WordPress.Category[]>('/categories')
 
     // countが0以上のカテゴリーだけを返す
     const filteredCategories = categories.filter((category): boolean => {

@@ -16,10 +16,7 @@ const { data } = await useAsyncData(
   `posts-${route.params.slug}`,
   async () => {
     // すべてのカテゴリーを取得
-    const categoriesRes = await useCustomFetch<WordPress.Category[]>('/categories')
-    const categories = categoriesRes.data.value
-
-    if (!categories) return
+    const categories = await useCustomFetch<WordPress.Category[]>('/categories')
 
     // 現在のrouteと同じカテゴリーを取得
     const filteredCategories = categories.filter((category): boolean => {
@@ -30,14 +27,13 @@ const { data } = await useAsyncData(
     if (!category) return
 
     // カテゴリーidをもとに投稿を取得
-    const postsRes = await useCustomFetch<WordPress.Post[]>('/posts', {
+    const posts = await useCustomFetch<WordPress.Post[]>('/posts', {
       query: {
         _embed: '',
         categories: category.id,
         per_page: 100,
       },
     })
-    const posts = postsRes.data.value
 
     return { posts, category }
   },

@@ -1,14 +1,15 @@
-import type { UseFetchOptions } from 'nuxt/app'
+type NuxtFetch = typeof $fetch
+type FetchRequest = Parameters<NuxtFetch>[0]
+type FetchOptions = Parameters<NuxtFetch>[1]
 
 export function useCustomFetch<T>(
-  url: string | (() => string),
-  options?: UseFetchOptions<T>,
+  url: FetchRequest,
+  options?: FetchOptions,
 ) {
   const config = useRuntimeConfig()
 
-  return useFetch(url, {
-    ...options,
+  return $fetch<T>(url, {
     baseURL: config.public.wpSiteUrl + '/wp-json/wp/v2',
-    $fetch: useNuxtApp().$api as typeof $fetch,
+    ...options,
   })
 }

@@ -13,13 +13,12 @@
 const { data: posts } = await useAsyncData(
   'posts-all',
   async () => {
-    const res = await useCustomFetch<WordPress.Post[]>('/posts', {
+    const posts = await useCustomFetch<WordPress.Post[]>('/posts', {
       query: {
         _embed: '',
         per_page: 100,
       },
     })
-    const posts = res.data.value
 
     return posts
   },
