@@ -19,13 +19,13 @@
     </a>
 
     <nav
-      v-if="allCategories && allCategories.length > 0"
+      v-if="data && data.allCategories.length > 0"
       class="category"
       :class="{ 'is-active': isCategoryActive }"
     >
       <ul>
         <li
-          v-for="category in allCategories"
+          v-for="category in data.allCategories"
           :key="category.id"
         >
           <NuxtLink
@@ -41,18 +41,18 @@
 const route = useRoute()
 
 // asyncData
-const { data: allCategories } = await useAsyncData(
+const { data } = await useAsyncData(
   'all-categories',
   async () => {
     // すべてのカテゴリーを取得
     const categories = await useCustomFetch<WordPress.Category[]>('/categories')
 
     // countが0以上のカテゴリーだけを返す
-    const filteredCategories = categories.filter((category): boolean => {
+    const allCategories = categories.filter((category): boolean => {
       return category.count > 0
     })
 
-    return filteredCategories
+    return { allCategories }
   },
 )
 
@@ -66,12 +66,8 @@ watch(() => route.path, () => {
 
 // methods
 function getCategoryName(slug: string) {
-  if (!allCategories.value) {
-    return ''
-  }
-
   // 現在のrouteと同じカテゴリーを取得
-  const currentCategory = allCategories.value.filter((category) => {
+  const currentCategory = data.value?.allCategories.filter((category) => {
     return category.slug === slug
   })[0]
 

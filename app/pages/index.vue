@@ -1,7 +1,9 @@
 <template>
-  <main>
+  <main v-if="data">
+    <NuxtLink to="/category/hoo">hoo</NuxtLink>
+
     <PostItem
-      v-for="post in posts"
+      v-for="post in data.posts"
       :key="post.id"
       :post="post"
       class="post"
@@ -10,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: posts } = await useAsyncData(
+const { data } = await useAsyncData(
   'posts-all',
   async () => {
     const posts = await useCustomFetch<WordPress.Post[]>('/posts', {
@@ -20,7 +22,7 @@ const { data: posts } = await useAsyncData(
       },
     })
 
-    return posts
+    return { posts }
   },
 )
 </script>

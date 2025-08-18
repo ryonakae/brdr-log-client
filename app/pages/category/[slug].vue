@@ -12,9 +12,11 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data } = await useAsyncData(
+const { data, error } = await useAsyncData(
   `posts-${route.params.slug}`,
   async () => {
+    console.log('useAsyncData:', route.params.slug)
+
     // すべてのカテゴリーを取得
     const categories = await useCustomFetch<WordPress.Category[]>('/categories')
 
@@ -23,8 +25,17 @@ const { data } = await useAsyncData(
       return category.slug === route.params.slug
     })
     const category = filteredCategories[0]
+    console.log('category:', category)
+    console.log('filteredCategories.length:', filteredCategories.length)
 
-    if (!category) return
+    if (!category) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Category not found',
+      })
+    }
+
+    console.log('category.id:', category.id)
 
     // カテゴリーidをもとに投稿を取得
     const posts = await useCustomFetch<WordPress.Post[]>('/posts', {
@@ -34,10 +45,18 @@ const { data } = await useAsyncData(
         per_page: 100,
       },
     })
+    console.log('posts.length:', posts.length)
 
     return { posts, category }
   },
 )
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode,
+    statusMessage: error.value.statusMessage,
+  })
+}
 </script>
 
 <style scoped>

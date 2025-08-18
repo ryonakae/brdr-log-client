@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      wpSiteUrl: process.env.WP_SITE_URL,
+      wpSiteUrl: '',
     },
   },
   compatibilityDate: '2025-08-18',
