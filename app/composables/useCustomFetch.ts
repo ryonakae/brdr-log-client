@@ -8,7 +8,7 @@ export function useCustomFetch<T>(
 
   return useFetch(url, {
     ...options,
-    baseURL: config.wpSiteUrl + '/wp-json/wp/v2',
+    baseURL: config.public.wpSiteUrl + '/wp-json/wp/v2',
     $fetch: useNuxtApp().$api as typeof $fetch,
   })
 }

@@ -6,11 +6,8 @@ function updateCSSCustomProperty(color: string) {
 
 function updateFavicon(color: string) {
   const favicon = document.querySelector('link[rel="favicon"]')
-  console.log('favicon:', favicon)
-
   const canvas = document.createElement('canvas')
   const context = canvas.getContext('2d')
-  console.log('context:', context)
 
   if (favicon && context) {
     const size = 64
@@ -21,7 +18,6 @@ function updateFavicon(color: string) {
     context.fillRect(0, 0, size, size)
 
     const image = canvas.toDataURL('image/png')
-    console.log('newFavicon:', image)
     favicon.setAttribute('href', image)
   }
 }
@@ -32,7 +28,6 @@ export default defineNuxtPlugin((_nuxtApp) => {
   router.afterEach(async () => {
     const accentColor
       = accentColors[Math.floor(Math.random() * accentColors.length)] as string
-    console.log('accentColor:', accentColor)
 
     updateCSSCustomProperty(accentColor)
     updateFavicon(accentColor)

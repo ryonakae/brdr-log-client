@@ -3,10 +3,10 @@
     <h1 class="title">
       <NuxtLink to="/">{{ siteInfo.title }}</NuxtLink>
       <span
-        v-if="$route.name === 'category-slug' && currentCategoryName"
+        v-if="route.name === 'category-slug'"
         class="category-name"
       >
-        / {{ currentCategoryName }}</span>
+        / {{ getCategoryName(route.params.slug as string) }}</span>
     </h1>
 
     <a
@@ -19,18 +19,17 @@
     </a>
 
     <nav
-      v-if="currentCategories && currentCategories.length > 0"
+      v-if="allCategories && allCategories.length > 0"
       class="category"
       :class="{ 'is-active': isCategoryActive }"
     >
       <ul>
         <li
-          v-for="category in currentCategories"
+          v-for="category in allCategories"
           :key="category.id"
         >
           <NuxtLink
             :to="`/category/${category.slug}`"
-            @click="setCurrentCategoryName(category.name)"
           >{{ category.name }}</NuxtLink>
         </li>
       </ul>
@@ -39,19 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router'
-
 const route = useRoute()
 
-// state
-const currentCategory = ref<WordPress.Category | null>(null)
-const currentCategoryName = ref('')
-const isCategoryActive = ref(false)
-
-const { data: currentCategories } = await useAsyncData(
-  'current-categories',
+// asyncData
+const { data: allCategories } = await useAsyncData(
+  'all-categories',
   async () => {
-  // すべてのカテゴリーを取得
+    // すべてのカテゴリーを取得
     const res = await useCustomFetch<WordPress.Category[]>('/categories')
     const categories = res.data.value
 
@@ -67,63 +60,37 @@ const { data: currentCategories } = await useAsyncData(
   },
 )
 
-// watch
-watch(() => route, (newRoute) => {
-  if (newRoute.name === 'category-slug') {
-    const _currentCategory = getCurrentCategory(newRoute)
+// data
+const isCategoryActive = ref(false)
 
-    if (_currentCategory) {
-      currentCategory.value = _currentCategory
-      setCurrentCategoryName(_currentCategory.name)
-    }
-  }
-  else {
-    isCategoryActive.value = false
-    currentCategory.value = null
-    currentCategoryName.value = ''
-  }
+// watch
+watch(() => route.path, () => {
+  isCategoryActive.value = false
 })
 
 // methods
-function getCurrentCategory(route: RouteLocationNormalizedLoadedGeneric) {
-  if (!currentCategories.value) {
-    return null
+function getCategoryName(slug: string) {
+  if (!allCategories.value) {
+    return ''
   }
 
-  // 現在のrouteと同じカテゴリーを抽出
-  const filteredCategories = currentCategories.value.filter((category): boolean => {
-    return category.slug === route.params.categorySlug
-  })
-  if (!filteredCategories) {
-    return null
+  // 現在のrouteと同じカテゴリーを取得
+  const currentCategory = allCategories.value.filter((category) => {
+    return category.slug === slug
+  })[0]
+
+  if (!currentCategory) {
+    return ''
   }
 
-  return filteredCategories[0]
-}
-
-function setCurrentCategoryName(categoryName: string) {
-  console.log('setCurrentCategoryName:', categoryName)
-  isCategoryActive.value = false
-  currentCategoryName.value = categoryName
+  // カテゴリ名を返す
+  return currentCategory.name
 }
 
 function toggleCategory(e: MouseEvent | TouchEvent) {
   e.preventDefault()
   isCategoryActive.value = !isCategoryActive.value
 }
-
-// lifecycle
-onMounted(async () => {
-  await nextTick()
-
-  if (route.name === 'category-slug') {
-    const _currentCategory = getCurrentCategory(route)
-
-    if (_currentCategory) {
-      setCurrentCategoryName(_currentCategory.name)
-    }
-  }
-})
 </script>
 
 <style scoped>

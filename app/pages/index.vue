@@ -20,7 +20,6 @@ const { data: posts } = await useAsyncData(
       },
     })
     const posts = res.data.value
-    // console.log(posts)
 
     return posts
   },
