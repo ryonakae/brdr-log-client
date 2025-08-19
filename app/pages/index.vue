@@ -1,7 +1,5 @@
 <template>
   <main v-if="data">
-    <NuxtLink to="/category/hoo">hoo</NuxtLink>
-
     <PostItem
       v-for="post in data.posts"
       :key="post.id"

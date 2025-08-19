@@ -32,6 +32,7 @@ const { data, error } = await useAsyncData(
       throw createError({
         statusCode: 404,
         statusMessage: 'Category not found',
+        fatal: true,
       })
     }
 
@@ -55,6 +56,7 @@ if (error.value) {
   throw createError({
     statusCode: error.value.statusCode,
     statusMessage: error.value.statusMessage,
+    fatal: error.value.fatal,
   })
 }
 </script>

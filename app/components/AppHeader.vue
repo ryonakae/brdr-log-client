@@ -3,10 +3,11 @@
     <h1 class="title">
       <NuxtLink to="/">{{ siteInfo.title }}</NuxtLink>
       <span
-        v-if="route.name === 'category-slug'"
+        v-if="isCategoryExists(route)"
         class="category-name"
       >
-        / {{ getCategoryName(route.params.slug as string) }}</span>
+        / {{ getCategoryName(route.params.slug as string) }}
+      </span>
     </h1>
 
     <a
@@ -38,6 +39,8 @@
 </template>
 
 <script setup lang="ts">
+import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router'
+
 const route = useRoute()
 
 // asyncData
@@ -82,6 +85,21 @@ function getCategoryName(slug: string) {
 function toggleCategory(e: MouseEvent | TouchEvent) {
   e.preventDefault()
   isCategoryActive.value = !isCategoryActive.value
+}
+
+function isCategoryExists(route: RouteLocationNormalizedLoadedGeneric): boolean {
+  // route.nameがcategory-slugでない場合はfalse
+  if (route.name !== 'category-slug') {
+    return false
+  }
+
+  // dataが存在しない場合はfalse
+  if (!data.value?.allCategories) {
+    return false
+  }
+
+  // slugがallCategoriesに存在するかチェック
+  return data.value.allCategories.some(category => category.slug === route.params.slug)
 }
 </script>
 
