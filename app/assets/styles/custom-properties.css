@@ -22,6 +22,16 @@
   --color-caption: var(--color-caption-light);
   --color-border: var(--color-border-light);
 
+  /* dark mode */
+  @media (prefers-color-scheme: dark) {
+    --color-bg: var(--color-bg-dark);
+    --color-bg-element: var(--color-bg-element-dark);
+    --color-text: var(--color-text-dark);
+    --color-title: var(--color-title-dark);
+    --color-caption: var(--color-caption-dark);
+    --color-border: var(--color-border-dark);
+  }
+
   /* typography */
   --fontFamily:
     'Neue Frutiger',
@@ -51,16 +61,5 @@
 
   @media (--sp) {
     --margin-site: 1.5rem;
-  }
-
-  /* dark mode */
-  /* stylelint-disable-next-line csstools/media-use-custom-media */
-  @media (prefers-color-scheme: dark) {
-    --color-bg: var(--color-bg-dark);
-    --color-bg-element: var(--color-bg-element-dark);
-    --color-text: var(--color-text-dark);
-    --color-title: var(--color-title-dark);
-    --color-caption: var(--color-caption-dark);
-    --color-border: var(--color-border-dark);
   }
 }
