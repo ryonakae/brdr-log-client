@@ -1,8 +1,14 @@
+/**
+ * HTML文字列をVueのVNodeにレンダリングするComposable
+ *
+ * @description parse5を使用してHTMLをパースし、Vue 3のh()関数を使って
+ * VNodeツリーに変換する。カスタムコンポーネントを指定することで、
+ * 特定のHTML要素をVueコンポーネントとしてレンダリングできる。
+ */
+
 import { parseFragment, type DefaultTreeAdapterTypes } from 'parse5'
 import {
   computed,
-  h,
-  type VNode,
   Fragment,
   type Component,
   type HTMLAttributes,
@@ -57,8 +63,11 @@ import {
   type WebViewHTMLAttributes,
 } from 'vue'
 
-// HTML要素の属性型マッピング
+/**
+ * HTML要素とそれに対応するVueの属性型のマッピング
+ */
 type ElementAttributesMap = {
+  // 特定の属性型を持つHTML要素
   a: AnchorHTMLAttributes
   area: AreaHTMLAttributes
   audio: AudioHTMLAttributes
@@ -109,7 +118,7 @@ type ElementAttributesMap = {
   video: VideoHTMLAttributes
   webview: WebViewHTMLAttributes
 
-  // 一般的なHTML要素（特定の属性型がないもの）
+  // 一般的なHTMLAttributes型を使用するHTML要素
   div: HTMLAttributes
   span: HTMLAttributes
   p: HTMLAttributes
@@ -159,110 +168,181 @@ type ElementAttributesMap = {
   dt: HTMLAttributes
 }
 
-// カスタムコンポーネントの props の型定義（ジェネリック型を使用）
-export interface CustomComponentProps {
+/**
+ * カスタムコンポーネントが受け取るpropsの基本型
+ */
+interface CustomComponentProps {
+  /** 子要素のVNodeリスト */
   children?: VNode[]
 }
 
-// カスタムコンポーネントの型定義（特定のHTML要素の属性型を受け取る）
-export type CustomComponent<T extends keyof ElementAttributesMap = keyof ElementAttributesMap>
-  = Component
-    | ((props: ElementAttributesMap[T] & CustomComponentProps) => VNode)
-
-// カスタムコンポーネントのマップの型定義（型推論を向上）
-export type CustomComponents = {
+/**
+ * カスタムコンポーネントのマップ型定義
+ * HTML要素名をキーとして、対応するカスタムコンポーネントを定義
+ */
+type CustomComponents = {
   [K in keyof ElementAttributesMap]?: (props: ElementAttributesMap[K] & CustomComponentProps) => VNode
 } & {
   [tagName: string]: (props: HTMLAttributes & CustomComponentProps) => VNode
 }
 
+/**
+ * ノードがHTML要素かどうかを判定
+ */
+function isElementNode(node: DefaultTreeAdapterTypes.ChildNode): node is DefaultTreeAdapterTypes.Element {
+  return node.nodeName !== '#text' && node.nodeName !== '#comment'
+}
+
+/**
+ * ノードがテキストノードかどうかを判定
+ */
+function isTextNode(node: DefaultTreeAdapterTypes.ChildNode): node is DefaultTreeAdapterTypes.TextNode {
+  return node.nodeName === '#text'
+}
+
+/**
+ * テキストノードからテキスト内容を取得
+ */
+function getTextContent(node: DefaultTreeAdapterTypes.TextNode): string {
+  return node.value
+}
+
+/**
+ * HTML要素から属性を抽出してオブジェクトとして返す
+ */
+function extractAttributes(element: DefaultTreeAdapterTypes.Element): Record<string, string | number | boolean> {
+  const attrs: Record<string, string | number | boolean> = {}
+  if (element.attrs) {
+    element.attrs.forEach((attr) => {
+      attrs[attr.name] = attr.value
+    })
+  }
+  return attrs
+}
+
+/**
+ * テキストノードをVNodeにレンダリング
+ */
+function renderTextNode(node: DefaultTreeAdapterTypes.TextNode): VNode | null {
+  const text = getTextContent(node).trim()
+  if (text === '') {
+    return null
+  }
+  return h('span', text)
+}
+
+/**
+ * 子ノードリストを再帰的にレンダリング
+ */
+function renderChildren(
+  childNodes: DefaultTreeAdapterTypes.ChildNode[] | undefined,
+  renderNodeFn: (node: DefaultTreeAdapterTypes.ChildNode) => VNode | null,
+): VNode[] {
+  if (!childNodes) {
+    return []
+  }
+
+  const children: VNode[] = []
+  childNodes.forEach((child) => {
+    const renderedChild = renderNodeFn(child)
+    if (renderedChild !== null) {
+      children.push(renderedChild)
+    }
+  })
+  return children
+}
+
+/**
+ * カスタムコンポーネントでレンダリング
+ */
+function renderWithCustomComponent(
+  customComponent: (props: CustomComponentProps) => VNode,
+  attrs: Record<string, string | number | boolean>,
+  children: VNode[],
+): VNode {
+  const props: CustomComponentProps = {
+    ...attrs,
+    children: children.length > 0 ? children : undefined,
+  }
+
+  // カスタムコンポーネントが関数の場合は実行、そうでなければh()で処理
+  if (typeof customComponent === 'function' && !('render' in customComponent)) {
+    return customComponent(props)
+  }
+  else {
+    return h(customComponent as Component, attrs, children)
+  }
+}
+
+/**
+ * 標準HTML要素としてレンダリング
+ */
+function renderStandardElement(
+  tagName: string,
+  attrs: Record<string, string | number | boolean>,
+  children: VNode[],
+): VNode {
+  return h(tagName, attrs, children)
+}
+
+/**
+ * HTMLをVNodeにレンダリングするメインのcomposable関数
+ */
 export function useHtml(html: string, customComponents?: CustomComponents) {
   const documentFragment = parseFragment(html)
 
-  const isElement = (node: DefaultTreeAdapterTypes.ChildNode): node is DefaultTreeAdapterTypes.Element => {
-    return node.nodeName !== '#text' && node.nodeName !== '#comment'
-  }
-
-  const isTextNode = (node: DefaultTreeAdapterTypes.ChildNode): node is DefaultTreeAdapterTypes.TextNode => {
-    return node.nodeName === '#text'
-  }
-
-  const getTextValue = (node: DefaultTreeAdapterTypes.TextNode): string => {
-    return node.value
-  }
-
+  /**
+   * ノードを再帰的にVNodeにレンダリング
+   */
   const renderNode = (node: DefaultTreeAdapterTypes.ChildNode): VNode | null => {
+    // テキストノードの処理
     if (isTextNode(node)) {
-      const text = getTextValue(node).trim()
-      if (text === '') {
-        return null
-      }
-      // テキストノードもVNodeとして返す
-      return h('span', text)
+      return renderTextNode(node)
     }
 
-    if (!isElement(node)) {
-      return null // コメントノードなどはnullを返す
+    // 要素ノード以外（コメントなど）はスキップ
+    if (!isElementNode(node)) {
+      return null
     }
 
-    const element = node as DefaultTreeAdapterTypes.Element
+    const element = node
     const tagName = element.tagName
+    const attrs = extractAttributes(element)
+    const children = renderChildren(element.childNodes, renderNode)
 
-    // 属性を取得
-    const attrs: Record<string, string | number | boolean> = {}
-    if (element.attrs) {
-      element.attrs.forEach((attr) => {
-        attrs[attr.name] = attr.value
-      })
-    }
-
-    // 子要素を再帰的にレンダリング
-    const children: VNode[] = []
-    if (element.childNodes) {
-      element.childNodes.forEach((child) => {
-        const renderedChild = renderNode(child)
-        if (renderedChild !== null) {
-          children.push(renderedChild)
-        }
-      })
-    }
-
-    // カスタムコンポーネントが定義されている場合はそれを使用
+    // カスタムコンポーネントが定義されている場合
     const customComponent = customComponents?.[tagName]
     if (customComponent) {
-      const props: CustomComponentProps = {
-        ...attrs,
-        children: children.length > 0 ? children : undefined,
-      }
-
-      // カスタムコンポーネントが関数の場合は実行、そうでなければh()で処理
-      if (typeof customComponent === 'function' && !('render' in customComponent)) {
-        return (customComponent as (props: CustomComponentProps) => VNode)(props)
-      }
-      else {
-        return h(customComponent as Component, attrs, children)
-      }
+      return renderWithCustomComponent(customComponent, attrs, children)
     }
 
-    return h(tagName, attrs, children)
+    // 標準HTML要素としてレンダリング
+    return renderStandardElement(tagName, attrs, children)
   }
 
-  // 全てのノードを事前にレンダリングし、Fragmentで包む
-  const renderedContent = computed(() => {
+  /**
+   * ドキュメントフラグメント全体をレンダリング
+   */
+  const renderDocumentFragment = (): VNode | null => {
     const nodes = documentFragment.childNodes
       .map(node => renderNode(node))
       .filter((node): node is VNode => node !== null)
 
+    // nodeが0の場合はnullを返す
     if (nodes.length === 0) {
       return null
     }
 
+    // nodeが1の場合はそのまま返す
     if (nodes.length === 1) {
-      return nodes[0]
+      return nodes[0]!
     }
 
+    // nodeが2以上の場合はFragmentでラップして返す
     return h(Fragment, {}, nodes)
-  })
+  }
+
+  const renderedContent = computed(() => renderDocumentFragment())
 
   return {
     renderedContent,

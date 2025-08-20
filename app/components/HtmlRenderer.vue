@@ -10,18 +10,17 @@ const props = defineProps<{
 }>()
 
 const { renderedContent } = useHtml(props.html, {
-  a: (props) => {
-    let linkTo = props.href
+  a: ({ href, ...props }) => {
+    let linkTo = href
 
     // サイトのURLで始まる場合は相対パスに変換
-    if (typeof linkTo === 'string' && linkTo.startsWith(siteInfo.url)) {
+    if (linkTo && linkTo.startsWith(siteInfo.url)) {
       linkTo = linkTo.replace(siteInfo.url, '')
     }
 
     return h(
       NuxtLink,
-      { to: linkTo, target: props.target, rel: props.rel },
-      // 子要素を関数として渡す
+      { to: linkTo, ...props },
       () => props.children,
     )
   },
