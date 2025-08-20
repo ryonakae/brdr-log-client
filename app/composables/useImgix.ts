@@ -41,7 +41,7 @@ export function useImgix(src?: string): ImgProps {
       auto: 'compress,format',
       lossless: 0,
       fit: 'max',
-      q: 95,
+      q: 90,
     },
   }
 }

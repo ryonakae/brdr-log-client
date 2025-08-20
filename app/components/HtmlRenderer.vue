@@ -24,7 +24,7 @@ const customComponents: CustomComponents = {
       () => props.children,
     )
   },
-  img: ({ src, alt, width, height, loading, class: className }) => {
+  img: ({ src, alt, width, height, class: className }) => {
     const { src: imgSrc, provider, modifiers } = useImgix(src)
 
     return h(NuxtImg, {
@@ -33,7 +33,8 @@ const customComponents: CustomComponents = {
       alt,
       width,
       height,
-      loading,
+      densities: 'x1',
+      loading: 'lazy',
       class: className,
       modifiers,
     })

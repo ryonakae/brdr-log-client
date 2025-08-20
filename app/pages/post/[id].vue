@@ -13,6 +13,7 @@
         :alt="data.post.title.rendered"
         :width="data.post._thumbnail.width"
         :height="data.post._thumbnail.height"
+        densities="x1"
         loading="lazy"
         :modifiers="imgProps.modifiers"
       />
