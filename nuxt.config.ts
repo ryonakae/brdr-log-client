@@ -2,7 +2,7 @@
 const isProduction = process.env.NODE_ENV === 'production'
 
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@nuxt/eslint'],
+  modules: ['@pinia/nuxt', '@nuxt/eslint', '@nuxt/image'],
   ssr: true,
   devtools: { enabled: true },
   css: [
@@ -16,6 +16,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       wpSiteUrl: '',
+      imgixEnabled: '',
+      imgixImageDomain: '',
     },
   },
   compatibilityDate: '2025-08-18',
@@ -62,6 +64,11 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: true,
+    },
+  },
+  image: {
+    imgix: {
+      baseURL: `https://${process.env.NUXT_PUBLIC_IMGIX_IMAGE_DOMAIN}`,
     },
   },
 })

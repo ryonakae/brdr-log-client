@@ -7,12 +7,20 @@
       v-if="data.post._thumbnail"
       class="eyecatch"
     >
-      <img
-        :src="data.post._thumbnail.url"
+      <NuxtImg
+        :provider="config.public.imgixEnabled && 'imgix'"
+        :src="getEyecatchSrc(data.post._thumbnail.url)"
         :alt="data.post.title.rendered"
         :width="data.post._thumbnail.width"
         :height="data.post._thumbnail.height"
-      >
+        loading="lazy"
+        :modifiers="{
+          auto: 'compress,format',
+          lossless: 0,
+          fit: 'max',
+          q: 95,
+        }"
+      />
     </figure>
 
     <h1 class="title">
@@ -37,6 +45,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const config = useRuntimeConfig()
 
 // asyncData
 const { data, error } = await useAsyncData(
@@ -59,6 +68,16 @@ if (error.value) {
     statusMessage: error.value.statusMessage,
     fatal: error.value.fatal,
   })
+}
+
+// methods
+function getEyecatchSrc(src: string) {
+  // 画像のURLが `${wpSiteUrl}/wp-content/uploads` で始まる場合は相対パスに変換
+  // imgixEnabledがtrueの場合のみ
+  if (config.public.imgixEnabled && src.startsWith(`${config.public.wpSiteUrl}/wp-content/uploads`)) {
+    return src.replace(`${config.public.wpSiteUrl}/wp-content/uploads`, '')
+  }
+  return src
 }
 </script>
 
