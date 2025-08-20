@@ -20,7 +20,7 @@ useHead({
 })
 useSeoMeta({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - ${siteInfo.title}` : `${siteInfo.title}`
+    return titleChunk ? `${titleChunk} / ${siteInfo.title}` : `${siteInfo.title}`
   },
   description: siteInfo.description,
   ogSiteName: siteInfo.title,
@@ -30,7 +30,7 @@ useSeoMeta({
   ogLocale: 'ja_JP',
   twitterCard: 'summary',
   colorScheme: 'light dark',
-  robots: 'index,follow,noarchive',
+  robots: 'index,follow',
 })
 </script>
 

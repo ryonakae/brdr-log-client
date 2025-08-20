@@ -12,6 +12,7 @@
 <script setup lang="ts">
 const route = useRoute()
 
+// asyncData
 const { data, error } = await useAsyncData(
   `posts-${route.params.slug}`,
   async () => {
@@ -59,6 +60,15 @@ if (error.value) {
     fatal: error.value.fatal,
   })
 }
+
+// meta
+useSeoMeta({
+  titleTemplate: (titleChunk) => {
+    return `${siteInfo.title} / ${titleChunk}`
+  },
+  title: data.value?.category.name,
+  description: data.value?.category.description,
+})
 </script>
 
 <style scoped>

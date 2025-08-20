@@ -8,14 +8,14 @@
       class="eyecatch"
     >
       <NuxtImg
-        :provider="imgProps.provider"
-        :src="imgProps.src"
+        :provider="eyacatchImgProps.provider"
+        :src="eyacatchImgProps.src"
         :alt="data.post.title.rendered"
         :width="data.post._thumbnail.width"
         :height="data.post._thumbnail.height"
         densities="x1"
         loading="lazy"
-        :modifiers="imgProps.modifiers"
+        :modifiers="eyacatchImgProps.modifiers"
       />
     </figure>
 
@@ -41,6 +41,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const config = useRuntimeConfig()
 
 // asyncData
 const { data, error } = await useAsyncData(
@@ -65,8 +66,21 @@ if (error.value) {
   })
 }
 
+// meta
+useSeoMeta({
+  title: data.value?.post.title.rendered,
+  description: data.value?.post._excerpt,
+  ogImage:
+    data.value?.post._thumbnail
+      ? config.public.imgixEnabled
+        ? `https://${config.public.imgixImageDomain}${useImgix(data.value?.post._thumbnail.url).src}`
+        : data.value?.post._thumbnail.url
+      : undefined,
+  twitterCard: data.value?.post._embedded['wp:featuredmedia'] && 'summary_large_image',
+})
+
 // computed
-const imgProps = computed(() => {
+const eyacatchImgProps = computed(() => {
   if (!data.value?.post?._thumbnail?.url) {
     return {
       provider: undefined,
