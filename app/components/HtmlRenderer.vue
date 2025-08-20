@@ -5,8 +5,6 @@
 <script setup lang="ts">
 import { NuxtImg, NuxtLink } from '#components'
 
-const config = useRuntimeConfig()
-
 const props = defineProps<{
   html: string
 }>()
@@ -27,28 +25,17 @@ const customComponents: CustomComponents = {
     )
   },
   img: ({ src, alt, width, height, loading, class: className }) => {
-    let imgSrc = src
-
-    // 画像のURLが `${wpSiteUrl}/wp-content/uploads` で始まる場合は相対パスに変換
-    // imgixEnabledがtrueの場合のみ
-    if (config.public.imgixEnabled && imgSrc && imgSrc.startsWith(`${config.public.wpSiteUrl}/wp-content/uploads`)) {
-      imgSrc = imgSrc.replace(`${config.public.wpSiteUrl}/wp-content/uploads`, '')
-    }
+    const { src: imgSrc, provider, modifiers } = useImgix(src)
 
     return h(NuxtImg, {
-      provider: config.public.imgixEnabled && 'imgix',
+      provider,
       src: imgSrc,
       alt,
       width,
       height,
       loading,
       class: className,
-      modifiers: {
-        auto: 'compress,format',
-        lossless: 0,
-        fit: 'max',
-        q: 95,
-      },
+      modifiers,
     })
   },
 }
