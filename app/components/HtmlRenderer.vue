@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const customComponents: CustomComponents = {
-  a: ({ href, ...props }) => {
+  a: ({ href, children, ...props }) => {
     let linkTo = href
 
     // サイトのURLで始まる場合は相対パスに変換
@@ -21,7 +21,7 @@ const customComponents: CustomComponents = {
     return h(
       NuxtLink,
       { to: linkTo, ...props },
-      () => props.children,
+      () => children,
     )
   },
   img: ({ src, alt, width, height, class: className }) => {
