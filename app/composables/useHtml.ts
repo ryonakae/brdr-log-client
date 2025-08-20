@@ -33,7 +33,6 @@ import {
   type LinkHTMLAttributes,
   type MapHTMLAttributes,
   type MenuHTMLAttributes,
-  type MediaHTMLAttributes,
   type MetaHTMLAttributes,
   type MeterHTMLAttributes,
   type ObjectHTMLAttributes,
@@ -109,6 +108,7 @@ type ElementAttributesMap = {
   track: TrackHTMLAttributes
   video: VideoHTMLAttributes
   webview: WebViewHTMLAttributes
+
   // 一般的なHTML要素（特定の属性型がないもの）
   div: HTMLAttributes
   span: HTMLAttributes
