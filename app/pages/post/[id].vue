@@ -41,7 +41,7 @@ const route = useRoute()
 
 // asyncData
 const { data, error } = await useAsyncData(
-  'posts-all',
+  `post-${route.params.id}`,
   async () => {
     const post = await useCustomFetch<WordPress.Post>(`/posts/${route.params.id}`, {
       query: {
