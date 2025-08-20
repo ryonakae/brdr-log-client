@@ -25,10 +25,9 @@
       :date="data.post.date"
     />
 
-    <div
-      class="content"
-      v-html="data.post.content.rendered"
-    />
+    <div class="content">
+      <HtmlRenderer :html="data.post.content.rendered" />
+    </div>
 
     <div class="backtop">
       <NuxtLink to="/">Back to Index</NuxtLink>
@@ -48,7 +47,7 @@ const { data, error } = await useAsyncData(
         _embed: '',
       },
     })
-    console.log('post:', post)
+    // console.log('post:', post)
 
     return { post }
   },
