@@ -5,6 +5,8 @@
 <script setup lang="ts">
 import { NuxtImg, NuxtLink } from '#components'
 
+const config = useRuntimeConfig()
+
 const props = defineProps<{
   html: string
 }>()
@@ -13,9 +15,20 @@ const customComponents: CustomComponents = {
   a: ({ href, children, ...props }) => {
     let linkTo = href
 
-    // サイトのURLで始まる場合は相対パスに変換
-    if (linkTo && linkTo.startsWith(siteInfo.url)) {
-      linkTo = linkTo.replace(siteInfo.url, '')
+    // サイトのURLまたはWordPressサイトのURLで始まる場合は相対パスに変換
+    if (linkTo) {
+      let searchValue: string | null = null
+
+      if (linkTo.startsWith(siteInfo.url)) {
+        searchValue = siteInfo.url
+      }
+      else if (linkTo.startsWith(config.public.wpSiteUrl)) {
+        searchValue = config.public.wpSiteUrl
+      }
+
+      if (searchValue) {
+        linkTo = linkTo.replace(searchValue, '')
+      }
     }
 
     return h(
