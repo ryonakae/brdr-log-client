@@ -180,7 +180,7 @@ interface CustomComponentProps {
  * カスタムコンポーネントのマップ型定義
  * HTML要素名をキーとして、対応するカスタムコンポーネントを定義
  */
-type CustomComponents = {
+export type CustomComponents = {
   [K in keyof ElementAttributesMap]?: (props: ElementAttributesMap[K] & CustomComponentProps) => VNode
 } & {
   [tagName: string]: (props: HTMLAttributes & CustomComponentProps) => VNode

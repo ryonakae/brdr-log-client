@@ -9,7 +9,7 @@ const props = defineProps<{
   html: string
 }>()
 
-const { renderedContent } = useHtml(props.html, {
+const customComponents: CustomComponents = {
   a: ({ href, ...props }) => {
     let linkTo = href
 
@@ -24,5 +24,7 @@ const { renderedContent } = useHtml(props.html, {
       () => props.children,
     )
   },
-})
+}
+
+const { renderedContent } = useHtml(props.html, customComponents)
 </script>
