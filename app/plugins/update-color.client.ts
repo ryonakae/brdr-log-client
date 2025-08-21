@@ -25,7 +25,11 @@ function updateFavicon(color: string) {
 export default defineNuxtPlugin((_nuxtApp) => {
   const router = useRouter()
 
-  router.afterEach(async () => {
+  router.afterEach(async (to, from, failure) => {
+    if (failure) {
+      return
+    }
+
     const accentColor
       = accentColors[Math.floor(Math.random() * accentColors.length)] as string
 
