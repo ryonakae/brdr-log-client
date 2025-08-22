@@ -1,151 +1,83 @@
-import dotenv from 'dotenv'
-import urljoin from 'url-join'
-import axios from 'axios'
-import * as WordPress from 'wordpress'
-import { NuxtConfigurationGenerateRoute } from '@nuxt/types/config/generate'
-import { Configuration } from '@nuxt/types'
-import Feed from './modules/feed'
-import '@nuxtjs/axios'
+// https://nuxt.com/docs/api/configuration/nuxt-config
+const isProduction = process.env.NODE_ENV === 'production'
 
-// Using .env file in nuxt.config.js
-dotenv.config()
-
-const nuxtConfig: Configuration = {
-  axios: {
-    baseURL: urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2')
+export default defineNuxtConfig({
+  modules: ['@pinia/nuxt', '@nuxt/eslint', '@nuxt/image', 'nuxt-module-feed'],
+  ssr: true,
+  devtools: { enabled: true },
+  css: [
+    'sanitize.css',
+    '~/assets/styles/font-face-common.css',
+    '~/assets/styles/font-face-kinto-regular.css',
+    '~/assets/styles/font-face-kinto-bold.css',
+    '~/assets/styles/custom-properties.css',
+    '~/assets/styles/main.css',
+  ],
+  runtimeConfig: {
+    public: {
+      wpSiteUrl: '',
+      imgixEnabled: '',
+      imgixImageDomain: '',
+    },
   },
-  build: {
-    // analyze: true,
-    postcss: {
-      plugins: {
-        cssnano: {
-          preset: 'default',
-          autoprefixer: false,
-          zindex: false,
-          discardUnused: {
-            fontFace: false
-          }
-        }
+  compatibilityDate: '2025-08-18',
+  nitro: {
+    minify: isProduction,
+    sourceMap: !isProduction,
+  },
+  vite: {
+    build: {
+      minify: isProduction ? 'terser' : false,
+      terserOptions: {
+        sourceMap: !isProduction,
+        compress: {
+          drop_console: true,
+        },
+        format: {
+          comments: /@license/i,
+        },
       },
-      preset: {
+    },
+  },
+  typescript: {
+    typeCheck: true,
+  },
+  postcss: {
+    plugins: {
+      '@csstools/postcss-global-data': {
+        files: [
+          './app/assets/styles/custom-media.css',
+        ],
+      },
+      'postcss-preset-env': {
         stage: 2,
         features: {
           'custom-media-queries': true,
-          'nesting-rules': true
+          'nesting-rules': true,
         },
-        importFrom: [
-          './assets/css/custom-properties.css',
-          './assets/css/custom-media.css'
-        ]
-      }
+      },
+      'cssnano': isProduction
+        ? { preset: 'default' }
+        : undefined,
     },
-    terser: {
-      parallel: true,
-      sourceMap: false,
-      terserOptions: {
-        warnings: false,
-        compress: {
-          drop_console: true
-        },
-        output: {
-          comments: /@license/i
-        }
-      }
-    }
   },
-  buildModules: ['@nuxt/typescript-build'],
-  css: ['~/assets/css/common.css'],
-  env: {
-    SITE_TITLE: 'LOG',
-    SITE_URL: 'https://log.brdr.jp',
-    SITE_DESCRIPTION: 'Logs by Ryo Nakae',
-    WP_SITE_URL: process.env.WP_SITE_URL as string
+  eslint: {
+    config: {
+      stylistic: true,
+    },
   },
-  generate: {
-    fallback: true,
-    routes: async (): Promise<NuxtConfigurationGenerateRoute[]> => {
-      // create feed
-      const feed = new Feed({
-        title: 'LOG',
-        id: 'https://log.brdr.jp',
-        link: 'https://log.brdr.jp',
-        description: 'Logs by Ryo Nakae',
-        copyright: '©Ryo Nakae'
-      })
-
-      // get index routes
-      async function getPostsRoute(): Promise<
-        NuxtConfigurationGenerateRoute[]
-      > {
-        const posts = await axios.get(
-          urljoin(process.env.WP_SITE_URL as string, '/wp-json/wp/v2/posts'),
-          {
-            params: {
-              _embed: '',
-              per_page: 100
-            }
-          }
-        )
-        const postsData = posts.data as WordPress.Post[]
-        return postsData.map(
-          (post): NuxtConfigurationGenerateRoute => {
-            // Feedにエントリーを追加
-            feed.addItem(post)
-
-            return {
-              route: `/post/${post.id}`,
-              payload: post
-            }
-          }
-        )
-      }
-
-      // get category page routes
-      async function getCategoryIndexRoute(): Promise<
-        NuxtConfigurationGenerateRoute[]
-      > {
-        // すべてのカテゴリーを取得
-        const categories = await axios.get(
-          urljoin(
-            process.env.WP_SITE_URL as string,
-            '/wp-json/wp/v2/categories'
-          )
-        )
-        const categoriesData = categories.data as WordPress.Category[]
-
-        // countが0以上のカテゴリーだけを返す
-        const filteredCategories = categoriesData.filter(
-          (category): boolean => {
-            return category.count > 0
-          }
-        )
-
-        return filteredCategories.map(
-          (category): NuxtConfigurationGenerateRoute => {
-            return {
-              route: `/category/${category.slug}`,
-              payload: category
-            }
-          }
-        )
-      }
-
-      const routes = await Promise.all([
-        getPostsRoute(),
-        getCategoryIndexRoute()
-      ])
-
-      // generate feed
-      await feed.generate('./dist/feed.xml')
-
-      return [...routes[0], ...routes[1]]
-    }
+  feed: {
+    sources: [
+      {
+        path: '/feed.xml',
+        type: 'rss2',
+        cacheTime: 60 * 60, // 1 hour
+      },
+    ],
   },
-  loading: false,
-  mode: 'universal',
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
-  plugins: [{ src: '~/plugins/router', mode: 'client' }],
-  target: 'static'
-}
-
-export default nuxtConfig
+  image: {
+    imgix: {
+      baseURL: `https://${process.env.NUXT_PUBLIC_IMGIX_IMAGE_DOMAIN}`,
+    },
+  },
+})
