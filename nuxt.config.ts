@@ -2,7 +2,7 @@
 const isProduction = process.env.NODE_ENV === 'production'
 
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@nuxt/eslint', '@nuxt/image'],
+  modules: ['@pinia/nuxt', '@nuxt/eslint', '@nuxt/image', 'nuxt-module-feed'],
   ssr: true,
   devtools: { enabled: true },
   css: [
@@ -65,6 +65,15 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
+  },
+  feed: {
+    sources: [
+      {
+        path: '/feed.xml',
+        type: 'rss2',
+        cacheTime: 60 * 60, // 1 hour
+      },
+    ],
   },
   image: {
     imgix: {

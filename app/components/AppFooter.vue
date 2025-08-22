@@ -3,7 +3,7 @@
     <NuxtLink
       to="https://brdr.jp"
       target="_blank"
-    >©Ryo Nakae</NuxtLink>
+    >© Ryo Nakae</NuxtLink>
   </footer>
 </template>
 
