@@ -75,7 +75,7 @@ useSeoMeta({
   ogImage:
     data.value?.post._thumbnail
       ? config.public.imgixEnabled
-        ? `https://${config.public.imgixImageDomain}${useImgix(data.value?.post._thumbnail.url).src}`
+        ? `https://${config.public.imgixImageDomain}${useImgix(data.value?.post._thumbnail.url).src}?auto=compress,format&lossless=0&q=90&w=1200`
         : data.value?.post._thumbnail.url
       : undefined,
   twitterCard: data.value?.post._embedded['wp:featuredmedia'] && 'summary_large_image',
