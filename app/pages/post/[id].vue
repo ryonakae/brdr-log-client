@@ -8,12 +8,14 @@
       class="eyecatch"
     >
       <NuxtImg
-        :provider="eyacatchImgProps.provider"
         :src="eyacatchImgProps.src"
-        :alt="data.post.title.rendered"
         :width="data.post._thumbnail.width"
         :height="data.post._thumbnail.height"
-        densities="x1"
+        :alt="data.post.title.rendered"
+        sizes="100vw sm:640px md:880px"
+        densities="1x 2x"
+        :provider="eyacatchImgProps.provider"
+        preload
         loading="lazy"
         :modifiers="eyacatchImgProps.modifiers"
       />

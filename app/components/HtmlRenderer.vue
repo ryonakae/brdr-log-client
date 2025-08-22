@@ -41,14 +41,15 @@ const customComponents: CustomComponents = {
     const { src: imgSrc, provider, modifiers } = useImgix(src)
 
     return h(NuxtImg, {
-      provider,
+      class: className,
       src: imgSrc,
-      alt,
       width,
       height,
-      densities: 'x1',
+      alt,
+      sizes: '100vw sm:640px md:800px',
+      densities: '1x 2x',
+      provider,
       loading: 'lazy',
-      class: className,
       modifiers,
     })
   },
