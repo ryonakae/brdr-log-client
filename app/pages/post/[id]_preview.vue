@@ -2,19 +2,25 @@
   <PostContent
     v-if="data"
     :post="data.post"
+    is-preview
   />
 </template>
 
 <script setup lang="ts">
 const route = useRoute()
+const config = useRuntimeConfig()
 
 const { data, error } = await useAsyncData(
-  `post-${route.params.id}`,
+  `post-preview-${route.params.id}`,
   async () => {
     const post = await useCustomFetch<WordPress.Post>(`/posts/${route.params.id}`, {
+      headers: {
+        Authorization: `Basic ${config.wpAuthKey}`,
+      },
       query: {
         _embed: '',
       },
+      cache: 'no-cache',
     })
 
     return { post }
