@@ -19,6 +19,7 @@ const { data, error } = await useAsyncData(
       },
       query: {
         _embed: '',
+        status: 'draft',
       },
       cache: 'no-cache',
     })
