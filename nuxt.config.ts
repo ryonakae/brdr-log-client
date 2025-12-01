@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '~/assets/styles/main.css',
   ],
   runtimeConfig: {
+    wpAuthKey: '',
     public: {
       wpSiteUrl: '',
       imgixEnabled: '',
