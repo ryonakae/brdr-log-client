@@ -15,7 +15,7 @@ const { data, error } = await useAsyncData(
   async () => {
     const post = await useCustomFetch<WordPress.Post>(`/posts/${route.params.id}`, {
       headers: {
-        Authorization: `Basic ${config.wpAuthKey}`,
+        Authorization: `Basic ${config.public.wpAuthKey}`,
       },
       query: {
         _embed: '',
