@@ -137,50 +137,47 @@ const eyacatchImgProps = computed(() => {
   & h5,
   & h6 {
     margin-top: 2.5em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25em;
     line-height: var(--lineHeight-heading);
 
     &::before {
-      font-size: var(--fontSize-extra-small);
       font-weight: 400;
       color: var(--color-caption);
+      margin-right: 0.35em;
     }
   }
 
   & h1 {
     &::before {
-      content: 'H1';
+      content: '#';
     }
     border-bottom: 3px dashed var(--color-border);
     padding-bottom: 0.25em;
   }
   & h2 {
     &::before {
-      content: 'H2';
+      content: '##';
     }
     border-bottom: 2px dashed var(--color-border);
     padding-bottom: 0.25em;
   }
   & h3 {
     &::before {
-      content: 'H3';
+      content: '###';
     }
   }
   & h4 {
     &::before {
-      content: 'H4';
+      content: '####';
     }
   }
   & h5 {
     &::before {
-      content: 'H5';
+      content: '#####';
     }
   }
   & h6 {
     &::before {
-      content: 'H6';
+      content: '######';
     }
   }
 
