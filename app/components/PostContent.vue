@@ -187,8 +187,7 @@ const eyacatchImgProps = computed(() => {
   & ol,
   & blockquote,
   & pre {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    margin-block: 1.5em;
   }
 
   & ul,
@@ -201,12 +200,12 @@ const eyacatchImgProps = computed(() => {
   }
 
   & figure {
-    margin-right: 0;
-    margin-left: 0;
+    margin-inline: 0;
     text-align: center;
   }
 
   & img {
+    width: 100%;
     max-width: 100%;
     height: auto;
     vertical-align: top;
@@ -242,18 +241,34 @@ const eyacatchImgProps = computed(() => {
   }
 
   & blockquote {
-    padding-left: 0.8rem;
-    margin-right: 0;
-    margin-left: 0;
+    padding-left: 0.8em;
+    margin-inline: 0;
     font-style: italic;
     border-left: 3px dashed var(--color-border);
   }
 
   & hr {
-    width: 5rem;
+    width: 5em;
     margin: var(--margin-content) auto;
     border: none;
     border-top: 3px dashed var(--color-border);
+  }
+
+  & .wp-block-columns {
+    margin-block: 1.5em;
+
+    &.is-layout-flex {
+      display: flex;
+      gap: 1.5em;
+
+      @media (--mobile) {
+        flex-direction: column;
+      }
+    }
+
+    & figure {
+      margin: 0;
+    }
   }
 
   & .wp-block-embed {

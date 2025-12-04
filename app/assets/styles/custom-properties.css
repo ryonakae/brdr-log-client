@@ -59,7 +59,7 @@
   --margin-content: 3rem;
   --margin-post: 2.5rem;
 
-  @media (--sp) {
+  @media (--mobile) {
     --margin-site: 1.5rem;
   }
 }

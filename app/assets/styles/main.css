@@ -15,11 +15,11 @@ html {
   background-color: var(--color-bg);
   -webkit-tap-highlight-color: initial;
 
-  @media (--pc) {
+  @media (--desktop) {
     font-size: 20px;
   }
 
-  @media (--sp-small) {
+  @media (--mobile-small) {
     font-size: 16px;
   }
 }
